@@ -61,6 +61,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
           <img 
             src={LOGO_URL} 
             alt="3G Customs Logo" 
+            loading="lazy"
             className="h-12 md:h-16 w-auto transition-transform duration-500 group-hover:scale-105 brightness-110" 
           />
         </div>
@@ -145,6 +146,7 @@ const Hero: React.FC = () => {
         <img 
           src="https://i.imgur.com/Vaz3k7h.jpg" 
           alt="3G Customs Hero Background" 
+          loading="lazy"
           className={`absolute inset-0 w-full h-full object-cover transition-all duration-[2000ms] ${videoLoaded ? 'opacity-0 blur-2xl' : 'opacity-70 grayscale-[20%]'}`}
         />
         {asyncVideoSrc && (
@@ -505,7 +507,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-24">
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center mb-10">
-              <img src={LOGO_URL} alt="3G Customs Logo" className="h-12 w-auto brightness-110" />
+              <img src={LOGO_URL} alt="3G Customs Logo" loading="lazy" className="h-12 w-auto brightness-110" />
             </div>
             <p className="text-gray-500 text-sm leading-relaxed mb-10 font-light max-w-xs">
               Referência em estética e proteção automotiva de luxo. Compromisso inabalável com a perfeição e o detalhe técnico.
