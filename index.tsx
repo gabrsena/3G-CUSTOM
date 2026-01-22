@@ -64,7 +64,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
         >
           <img 
             src={LOGO_URL} 
-            alt="3G Custom Sorocaba - Especialistas em Customização e PPF" 
+            alt="3G Customs Sorocaba - Especialistas em Customização e PPF" 
             loading="eager"
             className="h-10 md:h-16 w-auto transition-transform duration-500 group-hover:scale-105 brightness-110" 
           />
@@ -122,56 +122,75 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
 const Hero: React.FC = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [asyncVideoSrc, setAsyncVideoSrc] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const isMobile = window.innerWidth <= 768;
-    const timer = setTimeout(() => {
-      setAsyncVideoSrc("https://i.imgur.com/Vaz3k7h.mp4");
-    }, isMobile ? 800 : 400);
-    return () => clearTimeout(timer);
-  }, []);
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      // Solo carrega o vídeo em desktops para economizar dados e processamento mobile
+      if (!mobile && !asyncVideoSrc) {
+        setAsyncVideoSrc("https://i.imgur.com/Vaz3k7h.mp4");
+      }
+    };
+
+    handleResize(); 
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [asyncVideoSrc]);
 
   return (
     <section id="home" className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
-      <div className={`absolute inset-0 z-0 transition-transform duration-[5000ms] cubic-bezier(0.16, 1, 0.3, 1) ${videoLoaded ? 'scale-100' : 'scale-110 md:scale-125'}`}>
-        <img 
-          src="https://i.imgur.com/Vaz3k7h.jpg" 
-          alt="Oficina de Customização Automotiva 3G Custom em Sorocaba Wanel Ville" 
-          loading="eager"
-          className={`absolute inset-0 w-full h-full object-cover transition-all duration-[2000ms] ${videoLoaded ? 'opacity-0 blur-2xl' : 'opacity-70 grayscale-[20%]'}`}
-        />
-        {asyncVideoSrc && (
-          <video
-            autoPlay muted loop playsInline
-            onPlaying={() => setVideoLoaded(true)}
-            poster="https://i.imgur.com/Vaz3k7h.jpg"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[3000ms] cubic-bezier(0.4, 0, 0.2, 1) ${videoLoaded ? 'opacity-70 grayscale-[10%]' : 'opacity-0'}`}
-          >
-            <source src={asyncVideoSrc} type="video/mp4" />
-          </video>
-        )}
-        <div className="absolute inset-0 bg-black/50 pointer-events-none"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-90 pointer-events-none"></div>
-      </div>
+      {/* Background layer: Desativado no mobile conforme solicitado (sem foto nem vídeo) */}
+      {!isMobile && (
+        <div className={`absolute inset-0 z-0 transition-transform duration-[5000ms] cubic-bezier(0.16, 1, 0.3, 1) ${videoLoaded ? 'scale-100' : 'scale-110 md:scale-125'}`}>
+          <img 
+            src="https://i.imgur.com/Vaz3k7h.jpg" 
+            alt="3G Customs Sorocaba Wanel Ville" 
+            loading="eager"
+            decoding="async"
+            className={`absolute inset-0 w-full h-full object-cover transition-all duration-[2000ms] ${videoLoaded ? 'opacity-0 blur-2xl' : 'opacity-70 grayscale-[20%]'}`}
+          />
+          {asyncVideoSrc && (
+            <video
+              autoPlay muted loop playsInline
+              onPlaying={() => setVideoLoaded(true)}
+              poster="https://i.imgur.com/Vaz3k7h.jpg"
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[3000ms] cubic-bezier(0.4, 0, 0.2, 1) ${videoLoaded ? 'opacity-70 grayscale-[10%]' : 'opacity-0'}`}
+            >
+              <source src={asyncVideoSrc} type="video/mp4" />
+            </video>
+          )}
+        </div>
+      )}
+      
+      <div className="absolute inset-0 bg-black/50 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-90 pointer-events-none"></div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        <div className="mb-6 md:mb-8 inline-block animate-surge" style={{ animationDelay: '0.2s' }}>
-          <span className="text-[10px] md:text-xs font-extrabold tracking-[0.4em] md:tracking-[0.5em] uppercase chrome-text border-b border-white/30 pb-2 md:pb-3 block">
-            3G Custom: Perfeição em cada detalhe em Sorocaba
+        <div className="mb-6 md:mb-10 inline-block overflow-hidden py-1">
+          <span className="text-[10px] md:text-xs font-extrabold tracking-[0.4em] md:tracking-[0.5em] uppercase chrome-text border-b border-white/20 pb-3 block animate-reveal" style={{ animationDelay: '0.2s' }}>
+            3G Customs: Referência em Personalização e Proteção de Luxo
           </span>
         </div>
         
-        <h1 className="text-4xl md:text-8xl font-black mb-6 md:mb-8 leading-tight tracking-tighter overflow-hidden">
-          <span className="block opacity-90 animate-surge" style={{ animationDelay: '0.4s' }}>A Arte da</span>
-          <span className="chrome-text block drop-shadow-2xl animate-surge" style={{ animationDelay: '0.6s' }}>Performance em Sorocaba</span>
+        <h1 className="text-4xl md:text-8xl font-black mb-6 md:mb-10 leading-[1.1] tracking-tighter">
+          <div className="overflow-hidden">
+             <span className="block opacity-90 animate-reveal" style={{ animationDelay: '0.4s' }}>A Arte da</span>
+          </div>
+          <div className="overflow-hidden py-2">
+             <span className="chrome-text block drop-shadow-2xl animate-reveal" style={{ animationDelay: '0.6s' }}>Customização Exclusiva</span>
+          </div>
         </h1>
         
-        <p className="text-base md:text-xl text-gray-300 font-light max-w-2xl mx-auto mb-10 md:mb-14 leading-relaxed opacity-80 animate-surge" style={{ animationDelay: '0.8s' }}>
-          Elevamos a estética do seu veículo ao nível de obra de arte no Wanel Ville. Tecnologias avançadas de PPF, Envelopamento e Engenharia de Performance.
-        </p>
+        <div className="max-w-2xl mx-auto mb-10 md:mb-16">
+          <p className="text-base md:text-xl text-gray-300 font-light leading-relaxed animate-fade-scale" style={{ animationDelay: '1s' }}>
+            Engenharia de Proteção e Estética de Luxo em Sorocaba. Onde o cuidado artesanal encontra as tecnologias mais avançadas de PPF e personalização.
+          </p>
+        </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 animate-surge" style={{ animationDelay: '1s' }}>
-          <a href="#serviços" className="w-full sm:w-auto px-8 md:px-10 py-4 md:py-5 chrome-button font-black text-xs md:text-sm tracking-[0.2em] md:tracking-[0.25em] uppercase rounded-none transition-all text-center">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 animate-fade-in" style={{ animationDelay: '1.4s' }}>
+          <a href="#serviços" className="w-full sm:w-auto px-8 md:px-12 py-4 md:py-6 chrome-button font-black text-xs md:text-sm tracking-[0.25em] uppercase rounded-none transition-all text-center">
             NOSSOS SERVIÇOS
           </a>
         </div>
@@ -254,9 +273,10 @@ const Services: React.FC = () => {
 
 const Gallery: React.FC = () => {
   const images = [
-    { url: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2000", title: "Proteção Full PPF Sorocaba", car: "Porsche 911 GT3" },
-    { url: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=2000", title: "Envelopamento Premium Sorocaba", car: "Porsche Taycan" },
-    { url: "https://images.unsplash.com/photo-1544636331-e268592033c2?auto=format&fit=crop&q=80&w=2000", title: "Estética Avançada Sorocaba", car: "BMW M4 Competition" }
+    { url: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1000", title: "Proteção Full PPF Sorocaba", car: "Porsche 911 GT3" },
+    { url: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=1000", title: "Envelopamento Premium Sorocaba", car: "Porsche Taycan" },
+    { url: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=1000", title: "Estética Avançada Sorocaba", car: "Ferrari F8 Tributo" },
+    { url: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=1000", title: "Performance de Luxo", car: "Lamborghini Huracan" }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -277,27 +297,55 @@ const Gallery: React.FC = () => {
   return (
     <section id="galeria" className="py-20 md:py-32 bg-black overflow-hidden border-y border-white/5">
       <div className="max-w-7xl mx-auto px-6 mb-12 md:mb-20 text-center">
-        <h2 className="text-[10px] md:text-xs font-bold tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-500 mb-4 md:mb-5">Portfólio 3G Custom Sorocaba</h2>
+        <h2 className="text-[10px] md:text-xs font-bold tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-500 mb-4 md:mb-5">Portfólio 3G Customs Sorocaba</h2>
         <h3 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter mb-4 md:mb-8">Projetos Exclusivos</h3>
       </div>
-      <div className="relative group max-w-[1500px] mx-auto px-4 md:px-6">
-        <div className="relative h-[350px] md:h-[700px] overflow-hidden rounded-sm">
+      
+      {/* Mobile View: 2x2 Grid with exactly 4 items - Otimizado para Mobile */}
+      <div className="md:hidden grid grid-cols-2 gap-3 px-6">
+        {images.map((image, idx) => (
+          <div key={idx} className="relative aspect-square overflow-hidden rounded-sm group">
+            <img 
+              src={image.url} 
+              alt={image.title} 
+              loading="lazy" 
+              decoding="async"
+              className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-500" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <div className="absolute bottom-2 left-2 right-2">
+              <p className="text-[8px] font-bold uppercase tracking-widest text-white/60 truncate">{image.car}</p>
+              <h4 className="text-[10px] font-black text-white uppercase truncate">{image.title}</h4>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop View: Slider */}
+      <div className="hidden md:block relative group max-w-[1500px] mx-auto px-6">
+        <div className="relative h-[700px] overflow-hidden rounded-sm">
           {images.map((image, idx) => (
             <div
               key={idx}
               className={`absolute inset-0 transition-all duration-1000 transform ${idx === currentIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
             >
-              <img src={image.url} alt={`Projeto ${image.title} realizado em Sorocaba pela 3G Custom`} loading="lazy" className="w-full h-full object-cover grayscale-[10%]" />
+              <img 
+                src={image.url} 
+                alt={`Projeto ${image.title} em Sorocaba`} 
+                loading="lazy" 
+                decoding="async"
+                className="w-full h-full object-cover grayscale-[10%]" 
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-              <div className="absolute bottom-10 md:bottom-16 left-6 md:left-16 flex flex-col items-start animate-fade-in">
-                <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-white/50 mb-2 md:mb-3">{image.car}</span>
+              <div className="absolute bottom-16 left-16 flex flex-col items-start animate-fade-in">
+                <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-white/50 mb-3">{image.car}</span>
                 <h4 className="text-xl md:text-5xl font-black chrome-text uppercase tracking-tight">{image.title}</h4>
               </div>
             </div>
           ))}
         </div>
-        <button onClick={handlePrev} className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 p-2 md:p-3 glass-card z-20" aria-label="Imagem Anterior"><ChevronLeft size={20} className="chrome-text md:w-6 md:h-6" /></button>
-        <button onClick={handleNext} className="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 p-2 md:p-3 glass-card z-20" aria-label="Próxima Imagem"><ChevronRight size={20} className="chrome-text md:w-6 md:h-6" /></button>
+        <button onClick={handlePrev} className="absolute left-10 top-1/2 -translate-y-1/2 p-3 glass-card z-20" aria-label="Imagem Anterior"><ChevronLeft size={24} className="chrome-text" /></button>
+        <button onClick={handleNext} className="absolute right-10 top-1/2 -translate-y-1/2 p-3 glass-card z-20" aria-label="Próxima Imagem"><ChevronRight size={24} className="chrome-text" /></button>
       </div>
     </section>
   );
@@ -308,17 +356,18 @@ const AboutUs: React.FC = () => {
     <section id="sobre-nos" className="py-20 md:py-32 bg-[#050505] overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
-          <div className="relative order-2 lg:order-1">
-            <div className="absolute -top-6 -left-6 md:-top-10 md:-left-10 w-24 md:w-40 h-24 md:h-40 border-l border-t border-white/10 hidden sm:block"></div>
+          <div className="relative order-2 lg:order-1 hidden lg:block">
+            <div className="absolute -top-10 -left-10 w-40 h-40 border-l border-t border-white/10"></div>
             <div className="relative z-10 p-[1px] bg-gradient-to-br from-white/20 via-transparent to-white/20">
                <img 
                 src="https://images.unsplash.com/photo-1611821064430-0d40291d0f0b?auto=format&fit=crop&q=80&w=1200" 
-                alt="Equipe técnica da 3G Custom trabalhando em customização de luxo em Sorocaba" 
+                alt="Equipe técnica 3G Customs Sorocaba" 
                 loading="lazy"
-                className="w-full h-[400px] md:h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                decoding="async"
+                className="w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                />
             </div>
-            <div className="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 w-24 md:w-40 h-24 md:h-40 border-r border-b border-white/10 hidden sm:block"></div>
+            <div className="absolute -bottom-10 -right-10 w-40 h-40 border-r border-b border-white/10"></div>
           </div>
           
           <div className="space-y-8 md:space-y-10 order-1 lg:order-2">
@@ -374,7 +423,7 @@ const SocialProof: React.FC = () => {
         <p className="text-[10px] md:text-sm font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-gray-500 mb-12 md:mb-16">Avaliação no Google My Business Sorocaba</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 w-full">
           {[
-            { name: "Carlos M.", comment: "O PPF ficou impecável na 3G Custom. Trabalho de artista mesmo no Wanel Ville." },
+            { name: "Carlos M.", comment: "O PPF ficou impecável na 3G Customs. Trabalho de artista mesmo no Wanel Ville." },
             { name: "Roberta S.", comment: "Melhor atendimento de Sorocaba e região. Profissionalismo em cada etapa." },
             { name: "Guilherme F.", comment: "Minha Porsche parece que acabou de sair da fábrica. A performance superou tudo." }
           ].map((review, i) => (
@@ -424,7 +473,7 @@ const FAQAccordionItem: React.FC<{
                 style={{ border: 0 }} 
                 allowFullScreen={true} 
                 loading="lazy"
-                title="Mapa de Localização da 3G Custom em Sorocaba Wanel Ville"
+                title="Mapa 3G Customs Sorocaba"
               ></iframe>
             </div>
           )}
@@ -440,11 +489,11 @@ const Footer: React.FC = () => {
   const faqData = [
     { 
       q: "Onde fica a melhor oficina de customização em Sorocaba?", 
-      a: "A 3G Custom está localizada no bairro Wanel Ville, em Sorocaba/SP. Nosso ateliê fica na Av. Paulo Emanuel de Almeida, 590, sendo referência regional em PPF e Envelopamento de luxo.",
+      a: "A 3G Customs está localizada no bairro Wanel Ville, em Sorocaba/SP. Nosso ateliê fica na Av. Paulo Emanuel de Almeida, 590, sendo referência regional em PPF e Envelopamento de luxo.",
       map: true
     },
     { 
-      q: "A 3G Custom atende toda a região de Sorocaba?", 
+      q: "A 3G Customs atende toda a região de Sorocaba?", 
       a: "Sim, somos especialistas em estética automotiva de luxo (PPF, Envelopamento) e engenharia de performance, atendendo clientes de Sorocaba, Votorantim, Itu e toda a região metropolitana que buscam exclusividade e proteção.",
       map: false
     }
@@ -454,7 +503,7 @@ const Footer: React.FC = () => {
     <footer id="contato" className="bg-[#000000] border-t border-white/5" itemScope itemType="https://schema.org/AutoRepair">
       <div className="bg-[#050505] py-16 md:py-24 border-b border-white/5" itemScope itemType="https://schema.org/FAQPage">
         <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-[9px] md:text-[10px] font-black tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-700 mb-8 md:mb-12 text-center">Perguntas Estratégicas - GEO Sorocaba</h2>
+          <h2 className="text-[10px] md:text-[12px] font-black tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-700 mb-8 md:mb-12 text-center">Perguntas Frequentes (FAQ)</h2>
           <div className="space-y-1">
             {faqData.map((faq, index) => (
               <FAQAccordionItem 
@@ -472,14 +521,13 @@ const Footer: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 pt-16 md:pt-24 pb-12">
         <div className="flex flex-col items-center justify-center mb-20 md:mb-24">
-          <img src={LOGO_URL} alt="Logo 3G Custom Sorocaba" loading="lazy" className="h-12 md:h-16 w-auto brightness-110 mb-8" itemProp="image" />
+          <img src={LOGO_URL} alt="Logo 3G Customs Sorocaba" loading="lazy" decoding="async" className="h-12 md:h-16 w-auto brightness-110 mb-8" itemProp="image" />
           <p className="text-gray-500 text-[10px] md:text-sm leading-relaxed text-center font-light max-w-lg uppercase tracking-[0.3em] md:tracking-[0.4em] text-[9px] md:text-[10px]" itemProp="description">
             Especialistas em proteção e estética automotiva de alto padrão. Referência em PPF, Envelopamento e Performance no bairro Wanel Ville, Sorocaba/SP.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20 items-start">
-            {/* Coluna 1: Localização */}
             <div className="flex flex-col items-center md:items-start space-y-8 bg-white/5 p-8 md:p-10 backdrop-blur-sm border border-white/5 group hover:border-white/20 transition-all">
               <div className="flex items-center space-x-4">
                 <MapPin size={24} className="text-gray-400 group-hover:chrome-text transition-colors" />
@@ -501,7 +549,6 @@ const Footer: React.FC = () => {
               </div>
             </div>
 
-            {/* Coluna 2: Contato & Social */}
             <div className="flex flex-col items-center md:items-start space-y-8 bg-white/5 p-8 md:p-10 backdrop-blur-sm border border-white/5 group hover:border-white/20 transition-all">
               <div className="flex items-center space-x-4">
                 <Phone size={24} className="text-gray-400 group-hover:chrome-text transition-colors" />
@@ -531,7 +578,6 @@ const Footer: React.FC = () => {
               </div>
             </div>
 
-            {/* Coluna 3: Horário de Funcionamento */}
             <div className="flex flex-col items-center md:items-start space-y-8 bg-white/5 p-8 md:p-10 backdrop-blur-sm border border-white/5 group hover:border-white/20 transition-all">
               <div className="flex items-center space-x-4">
                 <Clock size={24} className="text-gray-400 group-hover:chrome-text transition-colors" />
@@ -552,9 +598,6 @@ const Footer: React.FC = () => {
                     <p className="text-gray-600 text-xs md:text-sm font-light">Fechado</p>
                   </div>
                 </div>
-                <p className="text-[9px] text-gray-600 italic tracking-wider pt-4 leading-relaxed">
-                  *Agendamentos exclusivos via WhatsApp para avaliações técnicas de PPF e Performance.
-                </p>
               </div>
             </div>
         </div>
@@ -562,7 +605,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/5 gap-6">
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8">
             <p className="text-gray-600 text-[8px] md:text-[9px] tracking-[0.2em] md:tracking-[0.3em] uppercase font-bold text-center md:text-left">
-              © 2024 3G Custom Sorocaba. Projetos de Alta Performance Automotiva.
+              © 2024 3G Customs Sorocaba. Projetos de Alta Performance Automotiva.
             </p>
             <span className="hidden md:block w-1 h-1 bg-gray-800 rounded-full"></span>
             <p className="text-gray-700 text-[8px] md:text-[9px] tracking-[0.2em] uppercase font-medium">CNPJ: 00.000.000/0001-00</p>
@@ -605,7 +648,7 @@ const App: React.FC = () => {
       <a 
         href="https://wa.me/551532123456" 
         target="_blank" 
-        aria-label="Falar com Especialista da 3G Custom Sorocaba pelo WhatsApp"
+        aria-label="WhatsApp 3G Customs"
         className={`fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 transition-all duration-700 transform flex items-center group ${scrolled ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-50 pointer-events-none'}`}
       >
         <div className="bg-white/10 backdrop-blur-3xl border border-white/20 px-8 py-4 rounded-l-full mr-[-40px] opacity-0 group-hover:opacity-100 group-hover:mr-2 transition-all duration-500 hidden md:block">
