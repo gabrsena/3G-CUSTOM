@@ -43,7 +43,7 @@ const navItems = [
   { name: 'Contato', href: '#contato' },
 ];
 
-const LOGO_URL = "https://i.imgur.com/cs4TnZ4.png";
+const LOGO_URL = "https://i.imgur.com/6qLo2Sd.png";
 const INSTAGRAM_URL = "https://www.instagram.com/3g_customss/?hl=pt-br";
 
 // --- Components ---
