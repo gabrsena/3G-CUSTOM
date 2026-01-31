@@ -698,13 +698,8 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/5 gap-6">
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8">
             <p className="text-gray-600 text-[8px] md:text-[9px] tracking-[0.2em] md:tracking-[0.3em] uppercase font-bold text-center md:text-left">
-              © 2024 3G Customs Sorocaba. Projetos de Alta Estética Automotiva.
+              © 2024 3G Customs Sorocaba. Projetos de Alta Estética Automotiva. Criado por <a href="https://www.upperagency.com.br/" target="_blank" className="hover:chrome-text transition-all">UPPER</a>.
             </p>
-          </div>
-          <div className="flex space-x-8">
-            <a href="https://www.upperagency.com.br/" target="_blank" className="text-gray-600 text-[8px] md:text-[9px] tracking-[0.2em] md:tracking-[0.3em] uppercase font-bold hover:chrome-text transition-all">
-                Criado por UPPER
-            </a>
           </div>
         </div>
       </div>
