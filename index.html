@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3G Customs | Performance e Customização Automotiva em Sorocaba</title>
-    <meta name="description" content="A melhor oficina de customização e proteção automotiva em Sorocaba. Especialistas em PPF, Envelopamento Premium e Performance no Wanel Ville.">
+    <title>3G Customs | Estética e Personalização Automotiva em Sorocaba</title>
+    <meta name="description" content="A melhor oficina de customização e proteção automotiva em Sorocaba. Especialistas em PPF, Envelopamento Premium e Estética no Wanel Ville.">
     
     <!-- GEO & Local SEO Meta Tags -->
     <meta name="geo.region" content="BR-SP">
@@ -27,6 +27,14 @@
             scroll-behavior: smooth;
         }
 
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #000000;
@@ -34,24 +42,24 @@
             overflow-x: hidden;
         }
         
-        /* Ultra-Premium Chrome Effect with High Contrast */
+        /* Ultra-Premium Chrome Effect - Updated with pale blue and brighter silver/white */
         .chrome-text {
             background: linear-gradient(
                 135deg, 
                 #ffffff 0%, 
-                #f8fafc 15%, 
+                #f0f9ff 15%, 
                 #e2e8f0 25%, 
                 #ffffff 45%, 
-                #94a3b8 55%, 
-                #ffffff 75%, 
-                #f8fafc 85%, 
+                #cbd5e1 55%, 
+                #f0f9ff 75%, 
+                #ffffff 85%, 
                 #ffffff 100%
             );
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: chrome-shine 4s linear infinite;
-            filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.4));
+            filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.4));
         }
 
         @keyframes chrome-shine {
@@ -62,7 +70,7 @@
 
         .chrome-border {
             position: relative;
-            background: linear-gradient(135deg, #ffffff, #e2e8f0, #ffffff, #94a3b8, #ffffff);
+            background: linear-gradient(135deg, #ffffff, #f0f9ff, #e2e8f0, #ffffff, #cbd5e1, #ffffff);
             padding: 1px;
             background-size: 200% 200%;
             animation: chrome-shine 3s ease infinite;
@@ -74,17 +82,19 @@
             width: 100%;
         }
 
-        /* High Intensity Chrome Button - More prominent Silver and White */
+        /* High Intensity Chrome Button - Brighter Silver, White and Pale Blue touch */
         .chrome-button {
             position: relative;
             background: linear-gradient(
                 135deg,
                 #ffffff 0%,
-                #f1f5f9 35%,
-                #cbd5e1 48%,
-                #475569 50%,
-                #cbd5e1 52%,
-                #f1f5f9 65%,
+                #f0f9ff 15%,
+                #f8fafc 35%,
+                #e2e8f0 48%,
+                #94a3b8 50%,
+                #e2e8f0 52%,
+                #f8fafc 65%,
+                #f0f9ff 85%,
                 #ffffff 100%
             );
             background-size: 200% auto;
@@ -92,7 +102,7 @@
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             overflow: hidden;
             z-index: 1;
-            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.12);
             border: none;
         }
         
@@ -121,7 +131,7 @@
 
         .chrome-button:hover {
             background-position: right center;
-            box-shadow: 0 0 70px rgba(255, 255, 255, 0.8), 0 0 35px rgba(240, 249, 255, 0.6);
+            box-shadow: 0 0 70px rgba(255, 255, 255, 0.9), 0 0 35px rgba(240, 249, 255, 0.7);
             transform: translateY(-8px) scale(1.08);
             letter-spacing: 0.4em;
         }
@@ -151,7 +161,7 @@
             }
             100% { 
                 transform: translateY(0); 
-                opacity: 1;
+                opacity: 1; 
                 filter: blur(0);
             }
         }
@@ -196,17 +206,10 @@
             animation: float 4s ease-in-out infinite;
         }
 
-        /* Pulse for Floating Button */
+        /* Pulse for Floating Button - Enhanced */
         @keyframes pulse-premium-outer {
-            0% { transform: scale(1); opacity: 0.6; }
-            100% { transform: scale(1.8); opacity: 0; }
-        }
-        .pulse-ring {
-            position: absolute;
-            inset: -8px;
-            border-radius: 9999px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            animation: pulse-premium-outer 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(2.2); opacity: 0; }
         }
 
         /* Continuous Chrome Shimmer for the floating button */
@@ -220,54 +223,96 @@
             animation: chrome-shimmer-float 3s infinite linear;
         }
     </style>
-    <!-- JSON-LD AutoRepair para GEO (Google Search Generative Experience) -->
+    <!-- JSON-LD AutoRepair & FAQPage para GEO (Google Search Generative Experience) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "AutoRepair",
-      "name": "3G Customs",
-      "alternateName": "3G Customs Sorocaba",
-      "image": "https://i.imgur.com/6qLo2Sd.png",
-      "@id": "https://3-g-customs.vercel.app/",
-      "url": "https://3-g-customs.vercel.app/",
-      "telephone": "+551532123456",
-      "priceRange": "$$$",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Av. Paulo Emanuel de Almeida, 590, Wanel Ville",
-        "addressLocality": "Sorocaba",
-        "addressRegion": "SP",
-        "postalCode": "18053-505",
-        "addressCountry": "BR"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -23.490159,
-        "longitude": -47.502967
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday"
-        ],
-        "opens": "08:00",
-        "closes": "18:00"
-      },
-      "description": "3G Customs: Especialistas em Customização e Performance Automotiva no Wanel Ville, Sorocaba/SP. Projetos exclusivos de estética e engenharia de elite.",
-      "areaServed": {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "AutoRepair",
+        "name": "3G Customs",
+        "alternateName": "3G Customs Sorocaba",
+        "image": "https://i.imgur.com/6qLo2Sd.png",
+        "@id": "https://3-g-customs.vercel.app/",
+        "url": "https://3-g-customs.vercel.app/",
+        "telephone": "+5515974018037",
+        "priceRange": "$$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Paulo Emanuel de Almeida, 590, Wanel Ville",
+          "addressLocality": "Sorocaba",
+          "addressRegion": "SP",
+          "postalCode": "18053-505",
+          "addressCountry": "BR"
+        },
+        "geo": {
           "@type": "GeoCoordinates",
           "latitude": -23.490159,
           "longitude": -47.502967
         },
-        "geoRadius": "50000"
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "08:00",
+            "closes": "18:00"
+          }
+        ],
+        "description": "3G Customs: Especialistas em Personalização Automotiva no Wanel Ville, Sorocaba/SP. Projetos exclusivos de estética e engenharia de elite.",
+        "areaServed": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": -23.490159,
+            "longitude": -47.502967
+          },
+          "geoRadius": "50000"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "A 3G Customs atende toda a região de Sorocaba?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim, somos especialistas em estética automotiva de luxo atendendo clientes de Sorocaba, Votorantim, Itu e toda a região metropolitana."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "A 3G Customs realiza personalização automotiva completa?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. Somos uma oficina de customização automotiva em Sorocaba focada em transformar projetos em realidade. Nossa equipe aplica engenharia de precisão para garantir exclusividade e segurança."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Como funciona o agendamento de serviços na 3G Customs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Para garantir a exclusividade, trabalhamos com agendamento prévio via WhatsApp para garantir sua vaga em nossa agenda técnica em Sorocaba."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qual o diferencial da estética automotiva da 3G Customs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nosso diferencial está na Engenharia de Detalhamento, utilizando produtos de linha profissional e processos rigorosos de controle de qualidade."
+            }
+          }
+        ]
       }
-    }
+    ]
     </script>
 <script type="importmap">
 {

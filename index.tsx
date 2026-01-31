@@ -21,7 +21,10 @@ import {
   Award,
   Users,
   Target,
-  Clock
+  Clock,
+  Hammer,
+  Palette,
+  Speaker
 } from 'lucide-react';
 
 // --- Types & Interfaces ---
@@ -45,6 +48,8 @@ const navItems = [
 
 const LOGO_URL = "https://i.imgur.com/6qLo2Sd.png";
 const INSTAGRAM_URL = "https://www.instagram.com/3g_customss/?hl=pt-br";
+const CONTACT_PHONE = "(15) 97401-8037";
+const WHATSAPP_LINK = "https://wa.me/5515974018037";
 
 // --- Components ---
 
@@ -128,7 +133,6 @@ const Hero: React.FC = () => {
     const handleResize = () => {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
-      // Solo carrega o vídeo em desktops para economizar dados e processamento mobile
       if (!mobile && !asyncVideoSrc) {
         setAsyncVideoSrc("https://i.imgur.com/Vaz3k7h.mp4");
       }
@@ -141,7 +145,6 @@ const Hero: React.FC = () => {
 
   return (
     <section id="home" className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
-      {/* Background layer: Desativado no mobile conforme solicitado (sem foto nem vídeo) */}
       {!isMobile && (
         <div className={`absolute inset-0 z-0 transition-transform duration-[5000ms] cubic-bezier(0.16, 1, 0.3, 1) ${videoLoaded ? 'scale-100' : 'scale-110 md:scale-125'}`}>
           <img 
@@ -174,12 +177,12 @@ const Hero: React.FC = () => {
           </span>
         </div>
         
-        <h1 className="text-4xl md:text-8xl font-black mb-6 md:mb-10 leading-[1.1] tracking-tighter">
+        <h1 className="text-3xl md:text-7xl font-black mb-6 md:mb-10 leading-[1.1] tracking-tighter">
           <div className="overflow-hidden">
-             <span className="block opacity-90 animate-reveal" style={{ animationDelay: '0.4s' }}>A Arte da</span>
+             <span className="block opacity-90 animate-reveal" style={{ animationDelay: '0.4s' }}>3G Customs Sorocaba:</span>
           </div>
           <div className="overflow-hidden py-2">
-             <span className="chrome-text block drop-shadow-2xl animate-reveal" style={{ animationDelay: '0.6s' }}>Customização Exclusiva</span>
+             <span className="chrome-text block drop-shadow-2xl animate-reveal" style={{ animationDelay: '0.6s' }}>Excelência em PPF e Envelopamento de Luxo</span>
           </div>
         </h1>
         
@@ -200,10 +203,10 @@ const Hero: React.FC = () => {
 };
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon }) => (
-  <div className="relative p-[1px] group transition-all duration-700 overflow-hidden rounded-none cursor-default">
+  <div className="relative p-[1px] group transition-all duration-700 overflow-hidden rounded-none cursor-default min-w-[280px] md:min-w-[320px] flex-shrink-0 md:flex-shrink">
     <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/5 to-white/20 opacity-30 md:opacity-40 group-hover:opacity-100 transition-opacity duration-700"></div>
     
-    <div className="relative h-full glass-card p-8 md:p-12 bg-[#050505] group-hover:bg-[#0a0a0a] transition-all duration-700">
+    <div className="relative h-full glass-card p-8 md:p-12 bg-[#050505] group-hover:bg-[#0a0a0a] transition-all duration-700 flex flex-col">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-1000"></div>
       
       <div className="text-gray-400 mb-6 md:mb-10 chrome-text inline-block transition-all duration-700 group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.8)]">
@@ -214,12 +217,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon }) =
         {title}
       </h3>
       
-      <p className="text-gray-500 text-xs md:text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-500">
+      <p className="text-gray-500 text-xs md:text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-500 flex-grow">
         {description}
       </p>
       
       <div className="mt-8 md:mt-10 opacity-0 md:opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-700">
-        <a href="#contato" className="text-[10px] font-black tracking-[0.2em] uppercase border-b border-white/40 hover:border-white pb-1 hover:text-white transition-all">
+        <a href={WHATSAPP_LINK} target="_blank" className="text-[10px] font-black tracking-[0.2em] uppercase border-b border-white/40 hover:border-white pb-1 hover:text-white transition-all">
           Orçamento
         </a>
       </div>
@@ -228,6 +231,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon }) =
 );
 
 const Services: React.FC = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  
   const services = [
     {
       title: "PPF (Paint Protection Film)",
@@ -245,26 +250,90 @@ const Services: React.FC = () => {
       icon: <Sparkles size={36} className="md:w-11 md:h-11" strokeWidth={1} />
     },
     {
-      title: "Performance e Customização",
-      description: "Engenharia de alto padrão para elevar a performance e a estética exclusiva do seu veículo.",
+      title: "Customização",
+      description: "Engenharia de alto padrão para elevar a estética exclusiva do seu veículo com total precisão.",
       icon: <Cog size={36} className="md:w-11 md:h-11" strokeWidth={1} />
+    },
+    {
+      title: "Martelinho de Ouro",
+      description: "Remoção técnica de amassados preservando a originalidade da pintura de fábrica com maestria.",
+      icon: <Hammer size={36} className="md:w-11 md:h-11" strokeWidth={1} />
+    },
+    {
+      title: "Tapeçaria",
+      description: "Restauração e personalização de interiores com materiais nobres e acabamento artesanal de elite.",
+      icon: <Palette size={36} className="md:w-11 md:h-11" strokeWidth={1} />
+    },
+    {
+      title: "Multimídia",
+      description: "Integração de sistemas de som e entretenimento de alta fidelidade para uma experiência premium ao dirigir.",
+      icon: <Speaker size={36} className="md:w-11 md:h-11" strokeWidth={1} />
     }
   ];
 
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth, scrollWidth } = scrollRef.current;
+      const scrollAmount = clientWidth * 0.8;
+
+      if (direction === 'right') {
+        const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 10;
+        if (isAtEnd) {
+          scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          scrollRef.current.scrollTo({ left: scrollLeft + scrollAmount, behavior: 'smooth' });
+        }
+      } else {
+        const isAtStart = scrollLeft <= 10;
+        if (isAtStart) {
+          scrollRef.current.scrollTo({ left: scrollWidth, behavior: 'smooth' });
+        } else {
+          scrollRef.current.scrollTo({ left: scrollLeft - scrollAmount, behavior: 'smooth' });
+        }
+      }
+    }
+  };
+
   return (
-    <section id="serviços" className="py-20 md:py-32 bg-[#050505]">
+    <section id="serviços" className="py-20 md:py-32 bg-[#050505] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-20 gap-8">
           <div className="max-w-2xl text-center md:text-left">
-            <h2 className="text-[10px] md:text-xs font-bold tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-500 mb-4 md:mb-5">Especialistas em Estética Automotiva Sorocaba</h2>
-            <h3 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter">Performance e Estética</h3>
+            <h2 className="text-[10px] md:text-xs font-bold tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-500 mb-4 md:mb-5">Especialistas em Customização e Performance em Sorocaba</h2>
+            <h3 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter">Nossos Serviços Premium</h3>
           </div>
-          <div className="hidden md:block w-40 h-[1px] bg-white/10"></div>
+          <div className="hidden md:flex gap-4">
+             <button 
+                onClick={() => scroll('left')} 
+                className="p-3 chrome-button rounded-sm group active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                aria-label="Scroll Esquerda"
+             >
+               <ChevronLeft size={24} className="text-black" />
+             </button>
+             <button 
+                onClick={() => scroll('right')} 
+                className="p-3 chrome-button rounded-sm group active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                aria-label="Scroll Direita"
+             >
+               <ChevronRight size={24} className="text-black" />
+             </button>
+          </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        
+        <div 
+          ref={scrollRef}
+          className="flex overflow-x-auto gap-6 md:gap-8 pb-10 scrollbar-hide snap-x snap-mandatory scroll-smooth"
+        >
           {services.map((service, index) => (
-            <ServiceCard key={index} {...service} />
+            <div key={index} className="snap-center">
+              <ServiceCard {...service} />
+            </div>
           ))}
+        </div>
+
+        <div className="md:hidden flex justify-center gap-8 mt-4">
+           <button onClick={() => scroll('left')} className="p-4 chrome-button rounded-full active:scale-95 shadow-xl"><ChevronLeft size={20} className="text-black" /></button>
+           <button onClick={() => scroll('right')} className="p-4 chrome-button rounded-full active:scale-95 shadow-xl"><ChevronRight size={20} className="text-black" /></button>
         </div>
       </div>
     </section>
@@ -276,7 +345,7 @@ const Gallery: React.FC = () => {
     { url: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1000", title: "Proteção Full PPF Sorocaba", car: "Porsche 911 GT3" },
     { url: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=1000", title: "Envelopamento Premium Sorocaba", car: "Porsche Taycan" },
     { url: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=1000", title: "Estética Avançada Sorocaba", car: "Ferrari F8 Tributo" },
-    { url: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=1000", title: "Performance de Luxo", car: "Lamborghini Huracan" }
+    { url: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=1000", title: "Personalização de Luxo", car: "Lamborghini Huracan" }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -297,11 +366,21 @@ const Gallery: React.FC = () => {
   return (
     <section id="galeria" className="py-20 md:py-32 bg-black overflow-hidden border-y border-white/5">
       <div className="max-w-7xl mx-auto px-6 mb-12 md:mb-20 text-center">
-        <h2 className="text-[10px] md:text-xs font-bold tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-500 mb-4 md:mb-5">Portfólio 3G Customs Sorocaba</h2>
+        <h2 className="text-[10px] md:text-xs font-bold tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-500 mb-4 md:mb-5">Portfólio 3G Customs: Customização de Luxo em Sorocaba</h2>
         <h3 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter mb-4 md:mb-8">Projetos Exclusivos</h3>
+        
+        <div className="flex justify-center mt-6">
+           <a 
+            href={INSTAGRAM_URL} 
+            target="_blank" 
+            className="chrome-button px-10 py-4 font-black text-xs tracking-[0.2em] uppercase rounded-none transition-all flex items-center gap-3"
+           >
+             <Instagram size={18} />
+             VER MAIS PROJETOS
+           </a>
+        </div>
       </div>
       
-      {/* Mobile View: 2x2 Grid with exactly 4 items - Otimizado para Mobile */}
       <div className="md:hidden grid grid-cols-2 gap-3 px-6">
         {images.map((image, idx) => (
           <div key={idx} className="relative aspect-square overflow-hidden rounded-sm group">
@@ -321,7 +400,6 @@ const Gallery: React.FC = () => {
         ))}
       </div>
 
-      {/* Desktop View: Slider */}
       <div className="hidden md:block relative group max-w-[1500px] mx-auto px-6">
         <div className="relative h-[700px] overflow-hidden rounded-sm">
           {images.map((image, idx) => (
@@ -372,7 +450,7 @@ const AboutUs: React.FC = () => {
           
           <div className="space-y-8 md:space-y-10 order-1 lg:order-2">
             <div className="text-center md:text-left">
-              <h2 className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#D40000] mb-4 md:mb-5">A Melhor Oficina de Customização de Sorocaba</h2>
+              <h2 className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#D40000] mb-4 md:mb-5">A Melhor Oficina de Performance e Customização de Sorocaba</h2>
               <h3 className="text-3xl md:text-5xl font-black chrome-text uppercase tracking-tighter leading-tight mb-6 md:mb-8">
                 Paixão e Compromisso <br className="hidden md:block" /> com a Excelência
               </h3>
@@ -425,7 +503,7 @@ const SocialProof: React.FC = () => {
           {[
             { name: "Carlos M.", comment: "O PPF ficou impecável na 3G Customs. Trabalho de artista mesmo no Wanel Ville." },
             { name: "Roberta S.", comment: "Melhor atendimento de Sorocaba e região. Profissionalismo em cada etapa." },
-            { name: "Guilherme F.", comment: "Minha Porsche parece que acabou de sair da fábrica. A performance superou tudo." }
+            { name: "Guilherme F.", comment: "Minha Porsche parece que acabou de sair da fábrica. A estética superou tudo." }
           ].map((review, i) => (
             <div key={i} className="flex flex-col items-center p-4">
               <p className="italic text-gray-400 text-xs md:text-sm mb-4 md:mb-6 leading-relaxed">"{review.comment}"</p>
@@ -488,13 +566,28 @@ const Footer: React.FC = () => {
 
   const faqData = [
     { 
-      q: "Onde fica a melhor oficina de customização em Sorocaba?", 
-      a: "A 3G Customs está localizada no bairro Wanel Ville, em Sorocaba/SP. Nosso ateliê fica na Av. Paulo Emanuel de Almeida, 590, sendo referência regional em PPF e Envelopamento de luxo.",
-      map: true
-    },
-    { 
       q: "A 3G Customs atende toda a região de Sorocaba?", 
-      a: "Sim, somos especialistas em estética automotiva de luxo (PPF, Envelopamento) e engenharia de performance, atendendo clientes de Sorocaba, Votorantim, Itu e toda a região metropolitana que buscam exclusividade e proteção.",
+      a: "Sim, somos especialistas em estética automotiva de luxo (PPF, Envelopamento) atendendo clientes de Sorocaba, Votorantim, Itu e toda a região metropolitana que buscam exclusividade e proteção.",
+      map: false
+    },
+    {
+      q: "Os materiais que vocês utilizam possuem seguro?",
+      a: "Sim, trabalhamos com as melhores marcas do mercado e todos os produtos que usamos possuem garantia de fábrica.",
+      map: false
+    },
+    {
+      q: "A 3G Customs realiza personalização automotiva completa?",
+      a: "Sim. Somos uma oficina de customização automotiva em Sorocaba focada em transformar projetos em realidade. Desde ajustes estéticos finos até modificações completas, nossa equipe técnica aplica engenharia de precisão para garantir exclusividade e segurança.",
+      map: false
+    },
+    {
+      q: "Como funciona o agendamento de serviços na 3G Customs?",
+      a: "Para garantir a exclusividade e o tempo necessário para cada projeto de estética, trabalhamos com agendamento prévio. Você pode entrar em contato conosco diretamente pelo WhatsApp para garantir sua vaga em nossa agenda técnica em Sorocaba.",
+      map: false
+    },
+    {
+      q: "Qual o diferencial da estética automotiva da 3G Customs comparada a outras de Sorocaba?",
+      a: "Nosso diferencial está na \"Engenharia de Detalhamento\". Enquanto outras agências focam no básico, a 3G Customs foca na entrega de valor e durabilidade, utilizando produtos de linha profissional e processos rigorosos de controle de qualidade em todos os nossos serviços em Sorocaba.",
       map: false
     }
   ];
@@ -503,7 +596,7 @@ const Footer: React.FC = () => {
     <footer id="contato" className="bg-[#000000] border-t border-white/5" itemScope itemType="https://schema.org/AutoRepair">
       <div className="bg-[#050505] py-16 md:py-24 border-b border-white/5" itemScope itemType="https://schema.org/FAQPage">
         <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-[10px] md:text-[12px] font-black tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-700 mb-8 md:mb-12 text-center">Perguntas Frequentes (FAQ)</h2>
+          <h2 className="text-[10px] md:text-[12px] font-black tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-700 mb-8 md:mb-12 text-center">Dúvidas Frequentes sobre Customização em Sorocaba</h2>
           <div className="space-y-1">
             {faqData.map((faq, index) => (
               <FAQAccordionItem 
@@ -523,7 +616,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col items-center justify-center mb-20 md:mb-24">
           <img src={LOGO_URL} alt="Logo 3G Customs Sorocaba" loading="lazy" decoding="async" className="h-12 md:h-16 w-auto brightness-110 mb-8" itemProp="image" />
           <p className="text-gray-500 text-[10px] md:text-sm leading-relaxed text-center font-light max-w-lg uppercase tracking-[0.3em] md:tracking-[0.4em] text-[9px] md:text-[10px]" itemProp="description">
-            Especialistas em proteção e estética automotiva de alto padrão. Referência em PPF, Envelopamento e Performance no bairro Wanel Ville, Sorocaba/SP.
+            Especialistas em proteção e estética automotiva de alto padrão. Referência em PPF, Envelopamento e Personalização no bairro Wanel Ville, Sorocaba/SP.
           </p>
         </div>
 
@@ -531,7 +624,7 @@ const Footer: React.FC = () => {
             <div className="flex flex-col items-center md:items-start space-y-8 bg-white/5 p-8 md:p-10 backdrop-blur-sm border border-white/5 group hover:border-white/20 transition-all">
               <div className="flex items-center space-x-4">
                 <MapPin size={24} className="text-gray-400 group-hover:chrome-text transition-colors" />
-                <h4 className="text-[10px] md:text-[11px] font-black tracking-[0.3em] uppercase text-gray-400">Localização</h4>
+                <h4 className="text-[10px] md:text-[11px] font-black tracking-[0.3em] uppercase text-gray-400">Localização Sorocaba</h4>
               </div>
               <div className="space-y-4 text-center md:text-left" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
                 <p className="text-gray-500 text-xs md:text-sm font-light leading-relaxed">
@@ -557,8 +650,8 @@ const Footer: React.FC = () => {
               <div className="space-y-6 text-center md:text-left w-full">
                 <div className="group/item">
                   <p className="text-[9px] text-gray-600 uppercase tracking-widest mb-1">Telefone / WhatsApp</p>
-                  <a href="tel:+551532123456" className="text-gray-400 text-sm md:text-base font-bold tracking-widest hover:text-white transition-colors" itemProp="telephone">
-                    (15) 3212-3456
+                  <a href={WHATSAPP_LINK} target="_blank" className="text-gray-400 text-sm md:text-base font-bold tracking-widest hover:text-white transition-colors" itemProp="telephone">
+                    {CONTACT_PHONE}
                   </a>
                 </div>
                 <div className="group/item">
@@ -581,7 +674,7 @@ const Footer: React.FC = () => {
             <div className="flex flex-col items-center md:items-start space-y-8 bg-white/5 p-8 md:p-10 backdrop-blur-sm border border-white/5 group hover:border-white/20 transition-all">
               <div className="flex items-center space-x-4">
                 <Clock size={24} className="text-gray-400 group-hover:chrome-text transition-colors" />
-                <h4 className="text-[10px] md:text-[11px] font-black tracking-[0.3em] uppercase text-gray-400">Atendimento</h4>
+                <h4 className="text-[10px] md:text-[11px] font-black tracking-[0.3em] uppercase text-gray-400">Atendimento 3G Customs</h4>
               </div>
               <div className="space-y-4 text-center md:text-left w-full">
                 <div className="space-y-3">
@@ -591,7 +684,7 @@ const Footer: React.FC = () => {
                   </div>
                   <div className="flex justify-between md:block md:space-y-1">
                     <span className="text-[9px] text-gray-600 uppercase tracking-widest">Sábado</span>
-                    <p className="text-gray-400 text-xs md:text-sm font-light" itemProp="openingHours" content="Sa 08:00-12:00">08:00h — 12:00h</p>
+                    <p className="text-gray-400 text-xs md:text-sm font-light">Fechado</p>
                   </div>
                   <div className="flex justify-between md:block md:space-y-1">
                     <span className="text-[9px] text-[#D40000] uppercase tracking-widest font-bold">Domingo</span>
@@ -605,10 +698,8 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/5 gap-6">
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8">
             <p className="text-gray-600 text-[8px] md:text-[9px] tracking-[0.2em] md:tracking-[0.3em] uppercase font-bold text-center md:text-left">
-              © 2024 3G Customs Sorocaba. Projetos de Alta Performance Automotiva.
+              © 2024 3G Customs Sorocaba. Projetos de Alta Estética Automotiva.
             </p>
-            <span className="hidden md:block w-1 h-1 bg-gray-800 rounded-full"></span>
-            <p className="text-gray-700 text-[8px] md:text-[9px] tracking-[0.2em] uppercase font-medium">CNPJ: 00.000.000/0001-00</p>
           </div>
           <div className="flex space-x-8">
             <a href="https://www.upperagency.com.br/" target="_blank" className="text-gray-600 text-[8px] md:text-[9px] tracking-[0.2em] md:tracking-[0.3em] uppercase font-bold hover:chrome-text transition-all">
@@ -644,21 +735,26 @@ const App: React.FC = () => {
       </main>
       <Footer />
 
-      {/* Floating Premium Button */}
+      {/* Refined Floating Premium Button */}
       <a 
-        href="https://wa.me/551532123456" 
+        href={WHATSAPP_LINK} 
         target="_blank" 
         aria-label="WhatsApp 3G Customs"
-        className={`fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 transition-all duration-700 transform flex items-center group ${scrolled ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-50 pointer-events-none'}`}
+        className={`fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 transition-all duration-1000 transform flex items-center group ${scrolled ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-32 opacity-0 scale-50 pointer-events-none'}`}
       >
-        <div className="bg-white/10 backdrop-blur-3xl border border-white/20 px-8 py-4 rounded-l-full mr-[-40px] opacity-0 group-hover:opacity-100 group-hover:mr-2 transition-all duration-500 hidden md:block">
-           <span className="text-[10px] font-black tracking-[0.4em] uppercase chrome-text">Falar com Especialista</span>
-        </div>
-        <div className="relative">
-          <div className="pulse-ring"></div>
-          <div className="chrome-border rounded-full p-[2px] shadow-2xl relative z-10 overflow-hidden group-hover:scale-110 transition-transform">
-            <div className="chrome-border-inner rounded-full p-3 md:p-4 flex items-center justify-center bg-black group-hover:bg-white/20">
-              <MessageCircle size={24} className="text-white group-hover:rotate-12 transition-transform md:w-7 md:h-7" />
+        <div className="relative flex items-center">
+          <div className="bg-white/10 backdrop-blur-3xl border border-white/20 px-10 py-5 rounded-l-full mr-[-45px] opacity-0 translate-x-10 group-hover:opacity-100 group-hover:translate-x-[-10px] group-hover:mr-2 transition-all duration-700 hidden md:block shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+             <span className="text-[11px] font-black tracking-[0.5em] uppercase chrome-text">Falar com Especialista</span>
+          </div>
+          <div className="relative">
+            {/* Enhanced multi-layered pulse rings */}
+            <div className="absolute inset-0 rounded-full border border-white/40 animate-[pulse-premium-outer_3s_infinite_cubic-bezier(0.4,0,0.2,1)]"></div>
+            <div className="absolute inset-0 rounded-full border border-white/20 animate-[pulse-premium-outer_3s_infinite_cubic-bezier(0.4,0,0.2,1)_1s]"></div>
+            
+            <div className="chrome-border rounded-full p-[2px] shadow-[0_0_50px_rgba(255,255,255,0.2)] relative z-10 overflow-hidden group-hover:scale-115 transition-transform duration-500">
+              <div className="chrome-border-inner rounded-full p-4 md:p-5 flex items-center justify-center bg-black group-hover:bg-white/10 transition-colors">
+                <MessageCircle size={28} className="text-white group-hover:scale-110 group-hover:rotate-[15deg] transition-all duration-500 md:w-8 md:h-8" />
+              </div>
             </div>
           </div>
         </div>
