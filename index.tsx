@@ -137,7 +137,7 @@ const Hero: React.FC = () => {
   const [asyncVideoSrc, setAsyncVideoSrc] = useState<string | null>(null);
 
   useEffect(() => {
-    // Carrega o vídeo de forma assíncrona para não travar o carregamento inicial da página
+    // Carrega o vídeo de forma assíncrona
     setAsyncVideoSrc("https://i.imgur.com/Vaz3k7h.mp4");
   }, []);
 
@@ -151,14 +151,14 @@ const Hero: React.FC = () => {
           // @ts-ignore
           fetchPriority="high"
           decoding="async"
-          className={`absolute inset-0 w-full h-full object-cover transition-all duration-[2000ms] ${videoLoaded ? 'opacity-0 blur-2xl' : 'opacity-70 grayscale-[20%]'}`}
+          className={`absolute inset-0 w-full h-full object-cover md:object-center object-[20%_center] transition-all duration-[2000ms] ${videoLoaded ? 'opacity-0 blur-2xl' : 'opacity-70 grayscale-[20%]'}`}
         />
         {asyncVideoSrc && (
           <video
             autoPlay muted loop playsInline
             onPlaying={() => setVideoLoaded(true)}
             poster="https://i.imgur.com/Vaz3k7h.jpg"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[3000ms] cubic-bezier(0.4, 0, 0.2, 1) ${videoLoaded ? 'opacity-70 grayscale-[10%]' : 'opacity-0'}`}
+            className={`absolute inset-0 w-full h-full object-cover md:object-center object-[20%_center] transition-opacity duration-[3000ms] cubic-bezier(0.4, 0, 0.2, 1) ${videoLoaded ? 'opacity-70 grayscale-[10%]' : 'opacity-0'}`}
           >
             <source src={asyncVideoSrc} type="video/mp4" />
           </video>
@@ -239,7 +239,7 @@ const Services: React.FC = () => {
     },
     {
       title: "Envelopamento Premium",
-      description: "Transformação estética completa com vinis mundiais. Acabamentos foscos, acetinados ou cores exclusivas.",
+      description: "Transformação estética completa with vinis mundiais. Acabamentos foscos, acetinados ou cores exclusivas.",
       icon: <Layers size={36} className="md:w-11 md:h-11" strokeWidth={1} />
     },
     {
@@ -298,7 +298,7 @@ const Services: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-20 gap-8">
           <div className="max-w-2xl text-center md:text-left">
             <p className="text-[10px] md:text-xs font-bold tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-500 mb-4 md:mb-5">Especialistas em Estética Automotiva de Luxo</p>
-            <h2 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter">Serviços de Alta Performance e Customização em Sorocaba</h2>
+            <h2 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter">Serviços de Alta Performance e Customização</h2>
           </div>
           <div className="hidden md:flex gap-4">
              <button 
@@ -417,21 +417,21 @@ const Gallery: React.FC = () => {
       </div>
       
       <div className="relative group/gallery">
-        {/* Navigation Buttons - Repositioned to Overlay the Slider */}
+        {/* Navigation Buttons - Overlaying Slider */}
         <div className="hidden md:block">
           <button 
             onClick={() => scroll('left')} 
-            className="absolute left-10 top-1/2 -translate-y-1/2 w-16 h-16 chrome-button flex items-center justify-center rounded-full group/btn z-40 opacity-0 group-hover/gallery:opacity-100 transition-all duration-500 shadow-[0_0_40px_rgba(255,255,255,0.2)]"
+            className="absolute left-6 lg:left-12 top-1/2 -translate-y-1/2 w-16 h-16 chrome-button flex items-center justify-center rounded-full group/btn z-40 opacity-0 group-hover/gallery:opacity-100 transition-all duration-500 shadow-[0_0_50px_rgba(255,255,255,0.3)]"
             aria-label="Anterior"
           >
-            <ChevronLeft size={28} className="text-black group-hover/btn:scale-110 transition-transform" />
+            <ChevronLeft size={32} className="text-black group-hover/btn:scale-110 transition-transform" />
           </button>
           <button 
             onClick={() => scroll('right')} 
-            className="absolute right-10 top-1/2 -translate-y-1/2 w-16 h-16 chrome-button flex items-center justify-center rounded-full group/btn z-40 opacity-0 group-hover/gallery:opacity-100 transition-all duration-500 shadow-[0_0_40px_rgba(255,255,255,0.2)]"
+            className="absolute right-6 lg:right-12 top-1/2 -translate-y-1/2 w-16 h-16 chrome-button flex items-center justify-center rounded-full group/btn z-40 opacity-0 group-hover/gallery:opacity-100 transition-all duration-500 shadow-[0_0_50px_rgba(255,255,255,0.3)]"
             aria-label="Próximo"
           >
-            <ChevronRight size={28} className="text-black group-hover/btn:scale-110 transition-transform" />
+            <ChevronRight size={32} className="text-black group-hover/btn:scale-110 transition-transform" />
           </button>
         </div>
 
@@ -445,11 +445,23 @@ const Gallery: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-center items-center gap-8 mt-8 md:mt-12">
-         {/* Mobile visible navigation buttons */}
+      <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-10 mt-8 md:mt-12">
+         {/* Mobile visible navigation buttons - Refined position */}
          <div className="md:hidden flex gap-8">
-            <button onClick={() => scroll('left')} className="w-14 h-14 chrome-button flex items-center justify-center rounded-full active:scale-95 shadow-xl"><ChevronLeft size={24} className="text-black" /></button>
-            <button onClick={() => scroll('right')} className="w-14 h-14 chrome-button flex items-center justify-center rounded-full active:scale-95 shadow-xl"><ChevronRight size={24} className="text-black" /></button>
+            <button 
+              onClick={() => scroll('left')} 
+              className="w-16 h-16 chrome-button flex items-center justify-center rounded-full active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.15)]"
+              aria-label="Scroll Esquerda"
+            >
+              <ChevronLeft size={28} className="text-black" />
+            </button>
+            <button 
+              onClick={() => scroll('right')} 
+              className="w-16 h-16 chrome-button flex items-center justify-center rounded-full active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.15)]"
+              aria-label="Scroll Direita"
+            >
+              <ChevronRight size={28} className="text-black" />
+            </button>
          </div>
 
          <a 
