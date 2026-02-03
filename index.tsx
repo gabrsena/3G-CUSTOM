@@ -546,7 +546,7 @@ const SocialProof: React.FC = () => {
           ))}
         </div>
         <h2 className="text-6xl md:text-9xl font-black mb-3 md:mb-4 chrome-text tracking-tighter">4.9</h2>
-        <p className="text-[10px] md:text-sm font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-gray-500 mb-12 md:mb-16">Avaliação no Google My Business Sorocaba</p>
+        <p className="text-[10px] md:text-sm font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-gray-500 mb-12 md:mb-16">Avaliação no Google My Business</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 w-full">
           {[
             { name: "Carlos M.", comment: "O PPF ficou impecável na 3G Customs. Trabalho de artista mesmo no Wanel Ville." },
