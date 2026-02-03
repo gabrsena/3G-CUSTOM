@@ -188,11 +188,6 @@
             opacity: 0;
         }
 
-        .animate-reveal {
-            animation: reveal-up 1.2s cubic-bezier(0.2, 1, 0.2, 1) forwards;
-            opacity: 0;
-        }
-
         .animate-fade-scale {
             animation: text-fade-in-scale 1.8s cubic-bezier(0.2, 1, 0.2, 1) forwards;
             opacity: 0;
@@ -231,6 +226,11 @@
             background-size: 200% 100%;
             animation: chrome-shimmer-float 3s infinite linear;
         }
+        
+        @keyframes loading-bar {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
     </style>
     <!-- JSON-LD AutoRepair & FAQPage para GEO (Google Search Generative Experience) -->
     <script type="application/ld+json">
@@ -240,7 +240,7 @@
         "@type": "AutoRepair",
         "name": "3G Customs",
         "alternateName": "3G Customs Sorocaba",
-        "image": "https://i.imgur.com/6qLo2Sd.png",
+        "image": "https://i.imgur.com/6dX0dHL.png",
         "@id": "https://3-g-customs.vercel.app/",
         "url": "https://3-g-customs.vercel.app/",
         "telephone": "+5515974018037",

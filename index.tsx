@@ -53,20 +53,44 @@ const navItems = [
   { name: 'Contato', href: '#contato' },
 ];
 
-const LOGO_URL = "https://i.imgur.com/6qLo2Sd.png";
+const LOGO_URL = "https://i.imgur.com/6dX0dHL.png";
 const INSTAGRAM_URL = "https://www.instagram.com/3g_customss/?hl=pt-br";
 const CONTACT_PHONE = "(15) 97401-8037";
 const WHATSAPP_LINK = "https://wa.me/5515974018037?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20or%C3%A7amento.%20Vim%20atrav%C3%A9s%20do%20site%20da%203G%20Customs.";
 
 // --- Components ---
 
+const Preloader: React.FC<{ loading: boolean }> = ({ loading }) => {
+  return (
+    <div 
+      className={`fixed inset-0 z-[1000] bg-black flex flex-col items-center justify-center transition-all duration-1000 ease-in-out ${
+        loading ? 'opacity-100' : 'opacity-0 pointer-events-none scale-110'
+      }`}
+    >
+      <div className="relative">
+        <div className="absolute inset-0 blur-3xl bg-white/10 rounded-full animate-pulse"></div>
+        <img 
+          src={LOGO_URL} 
+          alt="3G Customs Loading" 
+          className="h-24 md:h-32 w-auto relative z-10 animate-[reveal-up_1.5s_cubic-bezier(0.2,1,0.2,1)]"
+        />
+      </div>
+      <div className="mt-8 h-[1px] w-24 md:w-32 bg-gradient-to-r from-transparent via-white/40 to-transparent overflow-hidden">
+        <div className="h-full w-full bg-white animate-[loading-bar_2s_infinite]"></div>
+      </div>
+    </div>
+  );
+};
+
 const Header: React.FC<HeaderProps> = ({ scrolled }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled ? 'bg-black/90 backdrop-blur-xl py-3 md:py-4 shadow-[0_1px_30px_rgba(255,255,255,0.08)]' : 'bg-transparent py-6 md:py-8'
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-black ${
+        scrolled 
+          ? 'py-3 md:py-4 shadow-[0_1px_30px_rgba(255,255,255,0.05)] border-b border-white/5' 
+          : 'py-4 md:py-6 shadow-none border-b border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -74,13 +98,15 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
           className="flex items-center cursor-pointer group" 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <img 
-            src={LOGO_URL} 
-            alt="3G Customs Sorocaba - Especialistas em Customização e PPF" 
-            loading="eager"
-            decoding="async"
-            className="h-10 md:h-16 w-auto transition-transform duration-500 group-hover:scale-105 brightness-110" 
-          />
+          <div className="relative overflow-hidden">
+             <img 
+              src={LOGO_URL} 
+              alt="3G Customs Sorocaba - Especialistas em Customização e PPF" 
+              loading="eager"
+              decoding="async"
+              className="h-10 md:h-16 w-auto transition-all duration-500 group-hover:scale-105 group-hover:brightness-125 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" 
+            />
+          </div>
         </div>
 
         <nav className="hidden md:flex items-center space-x-12">
@@ -137,7 +163,6 @@ const Hero: React.FC = () => {
   const [asyncVideoSrc, setAsyncVideoSrc] = useState<string | null>(null);
 
   useEffect(() => {
-    // Carrega o vídeo de forma assíncrona
     setAsyncVideoSrc("https://i.imgur.com/Vaz3k7h.mp4");
   }, []);
 
@@ -171,13 +196,13 @@ const Hero: React.FC = () => {
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <div className="mb-6 md:mb-10 inline-block overflow-hidden py-1">
           <span className="text-[10px] md:text-xs font-extrabold tracking-[0.4em] md:tracking-[0.5em] uppercase chrome-text border-b border-white/20 pb-3 block animate-reveal" style={{ animationDelay: '0.2s' }}>
-            Referência em Personalização e Proteção de Luxo
+            Referência em Personalização e Proteção de Luxo em Sorocaba/SP
           </span>
         </div>
         
         <h1 className="text-3xl md:text-7xl font-black mb-6 md:mb-10 leading-[1.1] tracking-tighter">
           <div className="overflow-hidden">
-             <span className="block opacity-90 animate-reveal" style={{ animationDelay: '0.4s' }}>3G Customs Sorocaba:</span>
+             <span className="block opacity-90 animate-reveal" style={{ animationDelay: '0.4s' }}></span>
           </div>
           <div className="overflow-hidden py-2">
              <span className="chrome-text block drop-shadow-2xl animate-reveal" style={{ animationDelay: '0.6s' }}>Excelência em PPF e Envelopamento de Luxo</span>
@@ -259,7 +284,7 @@ const Services: React.FC = () => {
     },
     {
       title: "Tapeçaria",
-      description: "Restauração e personalização de interiores com materiais nobres e acabamento artesanal de elite.",
+      description: "Restauração e personalização de interiores with materiais nobres e acabamento artesanal de elite.",
       icon: <Palette size={36} className="md:w-11 md:h-11" strokeWidth={1} />
     },
     {
@@ -417,7 +442,6 @@ const Gallery: React.FC = () => {
       </div>
       
       <div className="relative group/gallery">
-        {/* Navigation Buttons - Overlaying Slider */}
         <div className="hidden md:block">
           <button 
             onClick={() => scroll('left')} 
@@ -446,7 +470,6 @@ const Gallery: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-10 mt-8 md:mt-12">
-         {/* Mobile visible navigation buttons - Refined position */}
          <div className="md:hidden flex gap-8">
             <button 
               onClick={() => scroll('left')} 
@@ -747,15 +770,26 @@ const Footer: React.FC = () => {
 
 const App: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 150);
+    const handleScroll = () => setScrolled(window.scrollY > 100);
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    // Simulate loading
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white/20 selection:text-black antialiased">
+      <Preloader loading={loading} />
       <Header scrolled={scrolled} />
       <main>
         <Hero />
