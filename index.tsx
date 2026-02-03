@@ -135,47 +135,35 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
 const Hero: React.FC = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [asyncVideoSrc, setAsyncVideoSrc] = useState<string | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      const mobile = window.innerWidth <= 768;
-      setIsMobile(mobile);
-      if (!mobile && !asyncVideoSrc) {
-        setAsyncVideoSrc("https://i.imgur.com/Vaz3k7h.mp4");
-      }
-    };
-
-    handleResize(); 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [asyncVideoSrc]);
+    // Carrega o vídeo de forma assíncrona para não travar o carregamento inicial da página
+    setAsyncVideoSrc("https://i.imgur.com/Vaz3k7h.mp4");
+  }, []);
 
   return (
     <section id="home" className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
-      {!isMobile && (
-        <div className={`absolute inset-0 z-0 transition-transform duration-[5000ms] cubic-bezier(0.16, 1, 0.3, 1) ${videoLoaded ? 'scale-100' : 'scale-110 md:scale-125'}`}>
-          <img 
-            src="https://i.imgur.com/Vaz3k7h.jpg" 
-            alt="3G Customs Sorocaba Wanel Ville" 
-            loading="eager"
-            // @ts-ignore
-            fetchPriority="high"
-            decoding="async"
-            className={`absolute inset-0 w-full h-full object-cover transition-all duration-[2000ms] ${videoLoaded ? 'opacity-0 blur-2xl' : 'opacity-70 grayscale-[20%]'}`}
-          />
-          {asyncVideoSrc && (
-            <video
-              autoPlay muted loop playsInline
-              onPlaying={() => setVideoLoaded(true)}
-              poster="https://i.imgur.com/Vaz3k7h.jpg"
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[3000ms] cubic-bezier(0.4, 0, 0.2, 1) ${videoLoaded ? 'opacity-70 grayscale-[10%]' : 'opacity-0'}`}
-            >
-              <source src={asyncVideoSrc} type="video/mp4" />
-            </video>
-          )}
-        </div>
-      )}
+      <div className={`absolute inset-0 z-0 transition-transform duration-[5000ms] cubic-bezier(0.16, 1, 0.3, 1) ${videoLoaded ? 'scale-100' : 'scale-110 md:scale-125'}`}>
+        <img 
+          src="https://i.imgur.com/Vaz3k7h.jpg" 
+          alt="3G Customs Sorocaba Wanel Ville" 
+          loading="eager"
+          // @ts-ignore
+          fetchPriority="high"
+          decoding="async"
+          className={`absolute inset-0 w-full h-full object-cover transition-all duration-[2000ms] ${videoLoaded ? 'opacity-0 blur-2xl' : 'opacity-70 grayscale-[20%]'}`}
+        />
+        {asyncVideoSrc && (
+          <video
+            autoPlay muted loop playsInline
+            onPlaying={() => setVideoLoaded(true)}
+            poster="https://i.imgur.com/Vaz3k7h.jpg"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[3000ms] cubic-bezier(0.4, 0, 0.2, 1) ${videoLoaded ? 'opacity-70 grayscale-[10%]' : 'opacity-0'}`}
+          >
+            <source src={asyncVideoSrc} type="video/mp4" />
+          </video>
+        )}
+      </div>
       
       <div className="absolute inset-0 bg-black/50 pointer-events-none"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-90 pointer-events-none"></div>
@@ -310,7 +298,7 @@ const Services: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-20 gap-8">
           <div className="max-w-2xl text-center md:text-left">
             <p className="text-[10px] md:text-xs font-bold tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-500 mb-4 md:mb-5">Especialistas em Estética Automotiva de Luxo</p>
-            <h2 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter">Serviços de Alta Performance e Customização</h2>
+            <h2 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter">Serviços de Alta Performance e Customização em Sorocaba</h2>
           </div>
           <div className="hidden md:flex gap-4">
              <button 
@@ -423,44 +411,51 @@ const Gallery: React.FC = () => {
 
   return (
     <section id="galeria" className="py-24 md:py-32 bg-black overflow-hidden border-y border-white/5">
-      <div className="max-w-7xl mx-auto px-6 mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
-        <div className="text-center md:text-left">
-          <p className="text-[10px] md:text-xs font-bold tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-500 mb-4 md:mb-5">Portfólio 3G Customs</p>
-          <h2 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter">Estética Automotiva de Luxo</h2>
-        </div>
-
-        <div className="flex justify-center md:justify-end gap-6">
-           <button 
-              onClick={() => scroll('left')} 
-              className="w-14 h-14 chrome-button flex items-center justify-center rounded-full group shadow-[0_0_30px_rgba(255,255,255,0.15)] active:scale-95"
-              aria-label="Anterior"
-           >
-             <ChevronLeft size={24} className="text-black" />
-           </button>
-           <button 
-              onClick={() => scroll('right')} 
-              className="w-14 h-14 chrome-button flex items-center justify-center rounded-full group shadow-[0_0_30px_rgba(255,255,255,0.15)] active:scale-95"
-              aria-label="Próximo"
-           >
-             <ChevronRight size={24} className="text-black" />
-           </button>
-        </div>
+      <div className="max-w-7xl mx-auto px-6 mb-16 md:mb-24 text-center md:text-left">
+        <p className="text-[10px] md:text-xs font-bold tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-500 mb-4 md:mb-5">Portfólio 3G Customs</p>
+        <h2 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter">Estética Automotiva de Luxo</h2>
       </div>
       
-      <div 
-        ref={scrollRef}
-        className="flex overflow-x-auto gap-4 md:gap-8 px-6 md:px-[calc((100vw-1280px)/2)] scrollbar-hide snap-x snap-mandatory pb-12 scroll-smooth"
-      >
-        {projects.map((project, idx) => (
-          <ProjectCard key={idx} {...project} isPriority={idx === 0} />
-        ))}
+      <div className="relative group/gallery">
+        {/* Navigation Buttons - Repositioned to Overlay the Slider */}
+        <div className="hidden md:block">
+          <button 
+            onClick={() => scroll('left')} 
+            className="absolute left-10 top-1/2 -translate-y-1/2 w-16 h-16 chrome-button flex items-center justify-center rounded-full group/btn z-40 opacity-0 group-hover/gallery:opacity-100 transition-all duration-500 shadow-[0_0_40px_rgba(255,255,255,0.2)]"
+            aria-label="Anterior"
+          >
+            <ChevronLeft size={28} className="text-black group-hover/btn:scale-110 transition-transform" />
+          </button>
+          <button 
+            onClick={() => scroll('right')} 
+            className="absolute right-10 top-1/2 -translate-y-1/2 w-16 h-16 chrome-button flex items-center justify-center rounded-full group/btn z-40 opacity-0 group-hover/gallery:opacity-100 transition-all duration-500 shadow-[0_0_40px_rgba(255,255,255,0.2)]"
+            aria-label="Próximo"
+          >
+            <ChevronRight size={28} className="text-black group-hover/btn:scale-110 transition-transform" />
+          </button>
+        </div>
+
+        <div 
+          ref={scrollRef}
+          className="flex overflow-x-auto gap-4 md:gap-8 px-6 md:px-[calc((100vw-1280px)/2)] scrollbar-hide snap-x snap-mandatory pb-12 scroll-smooth"
+        >
+          {projects.map((project, idx) => (
+            <ProjectCard key={idx} {...project} isPriority={idx === 0} />
+          ))}
+        </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 flex justify-center mt-8 md:mt-12">
+      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-center items-center gap-8 mt-8 md:mt-12">
+         {/* Mobile visible navigation buttons */}
+         <div className="md:hidden flex gap-8">
+            <button onClick={() => scroll('left')} className="w-14 h-14 chrome-button flex items-center justify-center rounded-full active:scale-95 shadow-xl"><ChevronLeft size={24} className="text-black" /></button>
+            <button onClick={() => scroll('right')} className="w-14 h-14 chrome-button flex items-center justify-center rounded-full active:scale-95 shadow-xl"><ChevronRight size={24} className="text-black" /></button>
+         </div>
+
          <a 
           href={INSTAGRAM_URL} 
           target="_blank" 
-          className="chrome-button px-12 py-5 font-black text-xs tracking-[0.3em] uppercase rounded-none transition-all flex items-center gap-4 group"
+          className="chrome-button px-12 py-5 font-black text-xs tracking-[0.3em] uppercase rounded-none transition-all flex items-center gap-4 group w-full md:w-auto text-center justify-center"
          >
            <Instagram size={20} className="group-hover:rotate-12 transition-transform" />
            Siga no Instagram
@@ -519,7 +514,7 @@ const AboutUs: React.FC = () => {
               <div className="space-y-3 md:space-y-4 group">
                 <Sparkles size={28} className="text-white/80 group-hover:chrome-text transition-all md:w-8 md:h-8" />
                 <h4 className="text-xs md:text-sm font-bold uppercase tracking-widest">Exclusividade</h4>
-                <p className="text-gray-500 text-[10px] md:text-xs leading-relaxed">Soluções personalizadas que refletem a personalidade de cada cliente.</p>
+                <p className="text-gray-500 text-[10px] md:text-xs leading-relaxed">Soluções personalizadas que refletem a personalidade de cada cliente em Sorocaba.</p>
               </div>
             </div>
           </div>
@@ -539,7 +534,7 @@ const SocialProof: React.FC = () => {
           ))}
         </div>
         <h2 className="text-6xl md:text-9xl font-black mb-3 md:mb-4 chrome-text tracking-tighter">4.9</h2>
-        <p className="text-[10px] md:text-sm font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-gray-500 mb-12 md:mb-16">Avaliação no Google My Business</p>
+        <p className="text-[10px] md:text-sm font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-gray-500 mb-12 md:mb-16">Avaliação no Google My Business Sorocaba</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 w-full">
           {[
             { name: "Carlos M.", comment: "O PPF ficou impecável na 3G Customs. Trabalho de artista mesmo no Wanel Ville." },
@@ -628,7 +623,7 @@ const Footer: React.FC = () => {
     },
     {
       q: "Qual o diferencial da estética automotiva da 3G Customs?",
-      a: "Nosso diferencial está na \"Engenharia de Detalhamento\". Enquanto outras oficinas focam no básico, a 3G Customs foca na entrega de valor e durabilidade, utilizando produtos de linha profissional e processos rigorosos de controle de qualidade.",
+      a: "Nosso diferencial está na \"Engenharia de Detalhamento\". Enquanto outras oficinas focam no básico, a 3G Customs foca na entrega de value e durabilidade, utilizando produtos de linha profissional e processos rigorosos de controle de qualidade.",
       map: false
     }
   ];
