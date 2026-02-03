@@ -56,7 +56,7 @@ const navItems = [
 const LOGO_URL = "https://i.imgur.com/6qLo2Sd.png";
 const INSTAGRAM_URL = "https://www.instagram.com/3g_customss/?hl=pt-br";
 const CONTACT_PHONE = "(15) 97401-8037";
-const WHATSAPP_LINK = "https://wa.me/5515974018037";
+const WHATSAPP_LINK = "https://wa.me/5515974018037?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20or%C3%A7amento.%20Vim%20atrav%C3%A9s%20do%20site%20da%203G%20Customs.";
 
 // --- Components ---
 
@@ -198,7 +198,7 @@ const Hero: React.FC = () => {
         
         <div className="max-w-2xl mx-auto mb-10 md:mb-16">
           <p className="text-base md:text-xl text-gray-300 font-light leading-relaxed animate-fade-scale" style={{ animationDelay: '1s' }}>
-            Engenharia de Proteção e Estética de Luxo em Sorocaba. Onde o cuidado artesanal encontra as tecnologias mais avançadas de PPF e personalização.
+            Engenharia de Proteção e Estética de Luxo. Onde o cuidado artesanal encontra as tecnologias mais avançadas de PPF e personalização.
           </p>
         </div>
 
@@ -310,7 +310,7 @@ const Services: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-20 gap-8">
           <div className="max-w-2xl text-center md:text-left">
             <p className="text-[10px] md:text-xs font-bold tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-500 mb-4 md:mb-5">Especialistas em Estética Automotiva de Luxo</p>
-            <h2 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter">Serviços de Alta Performance e Customização em Sorocaba</h2>
+            <h2 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter">Serviços de Alta Performance e Customização</h2>
           </div>
           <div className="hidden md:flex gap-4">
              <button 
@@ -384,8 +384,8 @@ const Gallery: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   
   const projects = [
-    { url: "https://i.imgur.com/e6yhP6A.jpeg", title: "Proteção Full PPF Sorocaba", car: "" },
-    { url: "https://i.imgur.com/Yq3CL4I.jpeg", title: "Envelopamento Premium", car: "" },
+    { url: "https://i.imgur.com/Yq3CL4I.jpeg", title: "Proteção Full PPF", car: "" },
+    { url: "https://i.imgur.com/e6yhP6A.jpeg", title: "Envelopamento Premium", car: "" },
     { url: "https://i.imgur.com/rm67cV8.jpeg", title: "Estética Avançada", car: "" },
     { url: "https://i.imgur.com/ErzEJA1.jpeg", title: "Personalização de Luxo", car: "" },
     { url: "https://i.imgur.com/FFTU87Z.jpeg", title: "Insulfilm", car: "" }
@@ -425,8 +425,8 @@ const Gallery: React.FC = () => {
     <section id="galeria" className="py-24 md:py-32 bg-black overflow-hidden border-y border-white/5">
       <div className="max-w-7xl mx-auto px-6 mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div className="text-center md:text-left">
-          <p className="text-[10px] md:text-xs font-bold tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-500 mb-4 md:mb-5">Portfólio 3G Customs Sorocaba</p>
-          <h2 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter">Estética Automotiva de Luxo em Sorocaba</h2>
+          <p className="text-[10px] md:text-xs font-bold tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-500 mb-4 md:mb-5">Portfólio 3G Customs</p>
+          <h2 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter">Estética Automotiva de Luxo</h2>
         </div>
 
         <div className="flex justify-center md:justify-end gap-6">
@@ -493,10 +493,10 @@ const AboutUs: React.FC = () => {
             <div className="text-center md:text-left">
               <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#D40000] mb-4 md:mb-5">Líder em Customização Automotiva</p>
               <h2 className="text-3xl md:text-5xl font-black chrome-text uppercase tracking-tighter leading-tight mb-6 md:mb-8">
-                Performance e Customização em Sorocaba: Excelência em Cada Detalhe
+                Customização, PPF e Películas: Excelência em Cada Detalhe
               </h2>
               <p className="text-gray-400 text-sm md:text-base leading-relaxed font-light mb-6 md:mb-8">
-                Localizada estrategicamente no Wanel Ville, em Sorocaba, a 3G Customs nasceu para transformar veículos em verdadeiras obras de arte. Somos um ateliê de customização onde cada projeto é tratado com exclusividade absoluta na região de Sorocaba/SP.
+                Localizada estrategicamente no Wanel Ville, em Sorocaba, a 3G Customs nasceu para transformar veículos em verdadeiras obras de arte. Somos um ateliê de customização onde cada projeto é tratado with exclusividade absoluta.
               </p>
             </div>
             
@@ -519,7 +519,7 @@ const AboutUs: React.FC = () => {
               <div className="space-y-3 md:space-y-4 group">
                 <Sparkles size={28} className="text-white/80 group-hover:chrome-text transition-all md:w-8 md:h-8" />
                 <h4 className="text-xs md:text-sm font-bold uppercase tracking-widest">Exclusividade</h4>
-                <p className="text-gray-500 text-[10px] md:text-xs leading-relaxed">Soluções personalizadas que refletem a personalidade de cada cliente em Sorocaba.</p>
+                <p className="text-gray-500 text-[10px] md:text-xs leading-relaxed">Soluções personalizadas que refletem a personalidade de cada cliente.</p>
               </div>
             </div>
           </div>
@@ -539,7 +539,7 @@ const SocialProof: React.FC = () => {
           ))}
         </div>
         <h2 className="text-6xl md:text-9xl font-black mb-3 md:mb-4 chrome-text tracking-tighter">4.9</h2>
-        <p className="text-[10px] md:text-sm font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-gray-500 mb-12 md:mb-16">Avaliação no Google My Business Sorocaba</p>
+        <p className="text-[10px] md:text-sm font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-gray-500 mb-12 md:mb-16">Avaliação no Google My Business</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 w-full">
           {[
             { name: "Carlos M.", comment: "O PPF ficou impecável na 3G Customs. Trabalho de artista mesmo no Wanel Ville." },
@@ -613,7 +613,7 @@ const Footer: React.FC = () => {
     },
     {
       q: "Os materiais que vocês utilizam possuem seguro?",
-      a: "Sim, trabalhamos com as melhores marcas do mercado e todos os produtos que usamos possuem garantia de fábrica.",
+      a: "Sim, trabalhamos with as melhores marcas do mercado e todos os produtos que usamos possuem garantia de fábrica.",
       map: false
     },
     {
