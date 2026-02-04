@@ -60,28 +60,6 @@ const WHATSAPP_LINK = "https://wa.me/5515974018037?text=Ol%C3%A1!%20Gostaria%20d
 
 // --- Components ---
 
-const Preloader: React.FC<{ loading: boolean }> = ({ loading }) => {
-  return (
-    <div 
-      className={`fixed inset-0 z-[1000] bg-black flex flex-col items-center justify-center transition-all duration-1000 ease-in-out ${
-        loading ? 'opacity-100' : 'opacity-0 pointer-events-none scale-110'
-      }`}
-    >
-      <div className="relative">
-        <div className="absolute inset-0 blur-3xl bg-white/10 rounded-full animate-pulse"></div>
-        <img 
-          src={LOGO_URL} 
-          alt="3G Customs Loading" 
-          className="h-24 md:h-32 w-auto relative z-10 animate-[reveal-up_1.5s_cubic-bezier(0.2,1,0.2,1)]"
-        />
-      </div>
-      <div className="mt-8 h-[1px] w-24 md:w-32 bg-gradient-to-r from-transparent via-white/40 to-transparent overflow-hidden">
-        <div className="h-full w-full bg-white animate-[loading-bar_2s_infinite]"></div>
-      </div>
-    </div>
-  );
-};
-
 const Header: React.FC<HeaderProps> = ({ scrolled }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -397,7 +375,7 @@ const Gallery: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   
   const projects = [
-    { url: "https://i.imgur.com/Yq3CL4I.jpeg", title: "Proteção Full PPF", car: "" },
+    { url: "https://i.imgur.com/Yq3CL4I.jpeg", title: "Proteção Full PPF Colorido", car: "" },
     { url: "https://i.imgur.com/e6yhP6A.jpeg", title: "Envelopamento Premium", car: "" },
     { url: "https://i.imgur.com/rm67cV8.jpeg", title: "Estética Avançada", car: "" },
     { url: "https://i.imgur.com/ErzEJA1.jpeg", title: "Personalização de Luxo", car: "" },
@@ -595,7 +573,12 @@ const FAQAccordionItem: React.FC<{
   showMap?: boolean;
 }> = ({ question, answer, isOpen, onClick, showMap }) => {
   return (
-    <div className="border-b border-white/5 py-4 md:py-6" itemProp="mainEntity" itemScope itemType="https://schema.org/Question">
+    <div 
+      className="border-b border-white/5 py-4 md:py-6" 
+      itemProp="mainEntity" 
+      itemScope 
+      itemType="https://schema.org/Question"
+    >
       <button 
         onClick={onClick}
         className="w-full flex justify-between items-center text-left focus:outline-none group py-2"
@@ -608,7 +591,12 @@ const FAQAccordionItem: React.FC<{
           {isOpen ? <Minus size={12} /> : <Plus size={12} />}
         </span>
       </button>
-      <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isOpen ? 'max-h-[600px] opacity-100 mt-4 md:mt-6' : 'max-h-0 opacity-0'}`} itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
+      <div 
+        className={`transition-all duration-500 ease-in-out overflow-hidden ${isOpen ? 'max-h-[600px] opacity-100 mt-4 md:mt-6' : 'max-h-0 opacity-0'}`} 
+        itemProp="acceptedAnswer" 
+        itemScope 
+        itemType="https://schema.org/Answer"
+      >
         <div className="pl-4 md:pl-6 border-l border-white/10">
           <p itemProp="text" className="text-gray-500 text-[11px] md:text-sm leading-relaxed font-light mb-4 md:mb-6">
             {answer}
@@ -665,7 +653,12 @@ const Footer: React.FC = () => {
 
   return (
     <footer id="contato" className="bg-[#000000] border-t border-white/5" itemScope itemType="https://schema.org/AutoRepair">
-      <div className="bg-[#050505] py-16 md:py-24 border-b border-white/5" itemScope itemType="https://schema.org/FAQPage">
+      {/* Seção FAQ devidamente marcada com FAQPage para SEO/GEO */}
+      <div 
+        className="bg-[#050505] py-16 md:py-24 border-b border-white/5" 
+        itemScope 
+        itemType="https://schema.org/FAQPage"
+      >
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-xl md:text-3xl font-black chrome-text uppercase tracking-tighter mb-8 md:mb-12 text-center">Dúvidas Frequentes sobre Estética Automotiva em Sorocaba</h2>
           <div className="space-y-1">
@@ -770,26 +763,15 @@ const Footer: React.FC = () => {
 
 const App: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 100);
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Simulate loading
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timer);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white/20 selection:text-black antialiased">
-      <Preloader loading={loading} />
       <Header scrolled={scrolled} />
       <main>
         <Hero />
