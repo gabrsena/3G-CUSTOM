@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import ReactDOM from 'react-dom/client';
 import { 
@@ -57,6 +58,7 @@ const LOGO_URL = "https://i.imgur.com/6dX0dHL.png";
 const INSTAGRAM_URL = "https://www.instagram.com/3g_customss/?hl=pt-br";
 const CONTACT_PHONE = "(15) 97401-8037";
 const WHATSAPP_LINK = "https://wa.me/5515974018037?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20or%C3%A7amento.%20Vim%20atrav%C3%A9s%20do%20site%20da%203G%20Customs.";
+const HERO_BADGE_IMG = "https://i.imgur.com/s2AO3y7.png";
 
 // --- Components ---
 
@@ -65,27 +67,15 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-black ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled 
-          ? 'py-3 md:py-4 shadow-[0_1px_30px_rgba(255,255,255,0.05)] border-b border-white/5' 
-          : 'py-4 md:py-6 shadow-none border-b border-transparent'
+          ? 'py-3 md:py-4 bg-black/90 backdrop-blur-xl border-b border-white/5 shadow-2xl' 
+          : 'py-4 md:py-6 bg-transparent border-b border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <div 
-          className="flex items-center cursor-pointer group" 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        >
-          <div className="relative overflow-hidden">
-             <img 
-              src={LOGO_URL} 
-              alt="3G Customs Sorocaba - Especialistas em Customização e PPF" 
-              loading="eager"
-              decoding="async"
-              className="h-10 md:h-16 w-auto transition-all duration-500 group-hover:scale-105 group-hover:brightness-125 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" 
-            />
-          </div>
-        </div>
+        {/* Logo central removida conforme solicitado anteriormente */}
+        <div className="flex-1 hidden md:block"></div>
 
         <nav className="hidden md:flex items-center space-x-12">
           {navItems.map((item) => (
@@ -100,17 +90,19 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
           ))}
         </nav>
 
-        <button 
-          className="md:hidden text-white p-2"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Abrir Menu Principal"
-        >
-          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        <div className="flex-1 flex justify-end">
+          <button 
+            className="text-white p-2 hover:opacity-70 transition-opacity"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Abrir Menu Principal"
+          >
+            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       <div 
-        className={`fixed inset-0 bg-black/95 backdrop-blur-2xl z-[100] flex flex-col items-center justify-center space-y-8 md:space-y-10 transition-all duration-700 md:hidden ${
+        className={`fixed inset-0 bg-black/98 backdrop-blur-3xl z-[100] flex flex-col items-center justify-center space-y-8 md:space-y-10 transition-all duration-700 md:hidden ${
           mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
         }`}
       >
@@ -172,16 +164,19 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-90 pointer-events-none"></div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        <div className="mb-6 md:mb-10 inline-block overflow-hidden py-1">
-          <span className="text-[10px] md:text-xs font-extrabold tracking-[0.4em] md:tracking-[0.5em] uppercase chrome-text border-b border-white/20 pb-3 block animate-reveal" style={{ animationDelay: '0.2s' }}>
+        <div className="flex flex-col items-center mb-6 md:mb-10 py-1">
+          <img 
+            src={HERO_BADGE_IMG} 
+            alt="3G Customs Badge" 
+            className="w-48 md:w-72 h-auto mb-6 animate-reveal drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+            style={{ animationDelay: '0.1s' }}
+          />
+          <span className="text-[10px] md:text-xs font-extrabold tracking-[0.4em] md:tracking-[0.5em] uppercase chrome-text border-b border-white/20 pb-3 block animate-reveal" style={{ animationDelay: '0.3s' }}>
             Referência em Personalização e Proteção de Luxo em Sorocaba/SP
           </span>
         </div>
         
         <h1 className="text-3xl md:text-7xl font-black mb-6 md:mb-10 leading-[1.1] tracking-tighter">
-          <div className="overflow-hidden">
-             <span className="block opacity-90 animate-reveal" style={{ animationDelay: '0.4s' }}></span>
-          </div>
           <div className="overflow-hidden py-2">
              <span className="chrome-text block drop-shadow-2xl animate-reveal" style={{ animationDelay: '0.6s' }}>Excelência em PPF e Envelopamento de Luxo</span>
           </div>
@@ -379,7 +374,7 @@ const Gallery: React.FC = () => {
     { url: "https://i.imgur.com/e6yhP6A.jpeg", title: "Envelopamento Premium", car: "" },
     { url: "https://i.imgur.com/rm67cV8.jpeg", title: "Estética Avançada", car: "" },
     { url: "https://i.imgur.com/ErzEJA1.jpeg", title: "Personalização de Luxo", car: "" },
-    { url: "https://i.imgur.com/FFTU87Z.jpeg", title: "Insulfilm", car: "" }
+    { url: "https://i.imgur.com/2pE3lzX.jpeg", title: "Insulfilm", car: "" }
   ];
 
   const scroll = useCallback((direction: 'left' | 'right') => {
@@ -765,7 +760,8 @@ const App: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 100);
+    // Threshold para trocar a transparência da barra - geralmente ao sair do Hero
+    const handleScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
