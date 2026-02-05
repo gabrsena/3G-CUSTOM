@@ -74,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        {/* Logo central removida conforme solicitado anteriormente */}
+        {/* Espaçador flex-1 para manter o nav centralizado no desktop */}
         <div className="flex-1 hidden md:block"></div>
 
         <nav className="hidden md:flex items-center space-x-12">
@@ -90,7 +90,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
           ))}
         </nav>
 
-        <div className="flex-1 flex justify-end">
+        <div className="flex-1 flex justify-end md:hidden">
           <button 
             className="text-white p-2 hover:opacity-70 transition-opacity"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -168,7 +168,7 @@ const Hero: React.FC = () => {
           <img 
             src={HERO_BADGE_IMG} 
             alt="3G Customs Badge" 
-            className="w-48 md:w-72 h-auto mb-6 animate-reveal drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+            className="w-64 md:w-96 h-auto mb-6 animate-reveal drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
             style={{ animationDelay: '0.1s' }}
           />
           <span className="text-[10px] md:text-xs font-extrabold tracking-[0.4em] md:tracking-[0.5em] uppercase chrome-text border-b border-white/20 pb-3 block animate-reveal" style={{ animationDelay: '0.3s' }}>
