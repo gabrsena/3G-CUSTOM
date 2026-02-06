@@ -65,24 +65,36 @@ const HERO_BADGE_IMG = "https://i.imgur.com/s2AO3y7.png";
 const Header: React.FC<HeaderProps> = ({ scrolled }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Prevenir scroll quando o menu estiver aberto
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [mobileMenuOpen]);
+
   return (
     <header 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
         scrolled 
-          ? 'py-3 md:py-4 bg-black/90 backdrop-blur-xl border-b border-white/5 shadow-2xl' 
-          : 'py-4 md:py-6 bg-transparent border-b border-transparent'
+          ? 'py-3 bg-black/90 backdrop-blur-xl border-b border-white/5 shadow-2xl' 
+          : 'py-5 bg-transparent border-b border-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        {/* Espaçador flex-1 para manter o nav centralizado no desktop */}
-        <div className="flex-1 hidden md:block"></div>
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center md:grid md:grid-cols-3">
+        {/* Coluna 1: Espaçador (Logo removido) */}
+        <div className="flex justify-start">
+          {/* O logo foi removido da barra de navegação conforme solicitado */}
+        </div>
 
-        <nav className="hidden md:flex items-center space-x-12">
+        {/* Coluna 2: Navegação Centralizada (Desktop Only) */}
+        <nav className="hidden md:flex items-center justify-center space-x-10 lg:space-x-12">
           {navItems.map((item) => (
             <a 
               key={item.name} 
               href={item.href} 
-              className="text-xs font-bold text-gray-400 hover:text-white transition-all duration-300 tracking-[0.2em] uppercase relative group"
+              className="text-[10px] font-bold text-gray-400 hover:text-white transition-all duration-300 tracking-[0.25em] uppercase relative group whitespace-nowrap"
             >
               {item.name}
               <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
@@ -90,39 +102,42 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
           ))}
         </nav>
 
-        <div className="flex-1 flex justify-end md:hidden">
+        {/* Coluna 3: Botão Menu Mobile (Mobile) ou Espaçador (Desktop) */}
+        <div className="flex justify-end items-center">
           <button 
-            className="text-white p-2 hover:opacity-70 transition-opacity"
+            className="text-white p-2 hover:bg-white/5 rounded-full transition-all md:hidden z-[110]"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Abrir Menu Principal"
+            aria-label={mobileMenuOpen ? "Fechar Menu" : "Abrir Menu"}
           >
-            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
+          
+          {/* O botão de orçamento foi removido apenas da versão desktop conforme solicitado */}
         </div>
       </div>
 
+      {/* Menu Mobile Overlay */}
       <div 
-        className={`fixed inset-0 bg-black/98 backdrop-blur-3xl z-[100] flex flex-col items-center justify-center space-y-8 md:space-y-10 transition-all duration-700 md:hidden ${
-          mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
+        className={`fixed inset-0 bg-black/98 backdrop-blur-3xl z-[105] flex flex-col items-center justify-center space-y-8 transition-all duration-500 ease-in-out md:hidden ${
+          mobileMenuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none'
         }`}
       >
-        <button 
-          className="absolute top-8 right-8 text-white/50 hover:text-white transition-all duration-300 p-2"
-          onClick={() => setMobileMenuOpen(false)}
-        >
-          <X size={40} strokeWidth={1} />
-        </button>
-
-        {navItems.map((item) => (
+        {navItems.map((item, idx) => (
           <a 
             key={item.name} 
             href={item.href} 
-            className="text-2xl font-light tracking-[0.3em] uppercase chrome-text"
+            className={`text-2xl font-light tracking-[0.3em] uppercase transition-all duration-500 transform ${mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+            style={{ transitionDelay: `${idx * 100}ms` }}
             onClick={() => setMobileMenuOpen(false)}
           >
-            {item.name}
+            <span className="chrome-text">{item.name}</span>
           </a>
         ))}
+        
+        <div className={`pt-12 flex gap-8 transition-all duration-700 delay-500 transform ${mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <a href={INSTAGRAM_URL} target="_blank" className="text-gray-500 hover:text-white"><Instagram size={24} /></a>
+          <a href={WHATSAPP_LINK} target="_blank" className="text-gray-500 hover:text-white"><MessageCircle size={24} /></a>
+        </div>
       </div>
     </header>
   );
@@ -184,7 +199,7 @@ const Hero: React.FC = () => {
         
         <div className="max-w-2xl mx-auto mb-10 md:mb-16">
           <p className="text-base md:text-xl text-gray-300 font-light leading-relaxed animate-fade-scale" style={{ animationDelay: '1s' }}>
-            Engenharia de Proteção e Estética de Luxo. Onde o cuidado artesanal encontra as tecnologias mais avançadas de PPF e personalização.
+            Onde o cuidado artesanal encontra as tecnologias mais avançadas de PPF e personalização.
           </p>
         </div>
 
@@ -237,7 +252,7 @@ const Services: React.FC = () => {
     },
     {
       title: "Envelopamento Premium",
-      description: "Transformação estética completa with vinis mundiais. Acabamentos foscos, acetinados ou cores exclusivas.",
+      description: "Transformação estética completa com vinis mundiais. Acabamentos foscos, acetinados ou cores exclusivas.",
       icon: <Layers size={36} className="md:w-11 md:h-11" strokeWidth={1} />
     },
     {
@@ -257,7 +272,7 @@ const Services: React.FC = () => {
     },
     {
       title: "Tapeçaria",
-      description: "Restauração e personalização de interiores with materiais nobres e acabamento artesanal de elite.",
+      description: "Restauração e personalização de interiores com materiais nobres e acabamento artesanal de elite.",
       icon: <Palette size={36} className="md:w-11 md:h-11" strokeWidth={1} />
     },
     {
@@ -499,7 +514,7 @@ const AboutUs: React.FC = () => {
                 Customização, PPF e Películas: Excelência em Cada Detalhe
               </h2>
               <p className="text-gray-400 text-sm md:text-base leading-relaxed font-light mb-6 md:mb-8">
-                Localizada estrategicamente no Wanel Ville, em Sorocaba, a 3G Customs nasceu para transformar veículos em verdadeiras obras de arte. Somos um ateliê de customização onde cada projeto é tratado com exclusividade absoluta.
+                Localizada estrategicamente no Wanel Ville, em Sorocaba, a 3G Customs nasceu para transformar veículos em verdadeiras obras de arte. Somos um ateliê de customização onde cada projeto é tratado com exclusividade absoluta em Sorocaba/SP.
               </p>
             </div>
             
@@ -626,7 +641,7 @@ const Footer: React.FC = () => {
     },
     {
       q: "Os materiais que vocês utilizam possuem seguro?",
-      a: "Sim, trabalhamos with as melhores marcas do mercado e todos os produtos que usamos possuem garantia de fábrica.",
+      a: "Sim, trabalhamos com as melhores marcas do mercado e todos os produtos que usamos possuem garantia de fábrica.",
       map: false
     },
     {
@@ -641,7 +656,7 @@ const Footer: React.FC = () => {
     },
     {
       q: "Qual o diferencial da estética automotiva da 3G Customs?",
-      a: "Nosso diferencial está na \"Engenharia de Detalhamento\". Enquanto outras oficinas focam no básico, a 3G Customs foca na entrega de value e durabilidade, utilizando produtos de linha profissional e processos rigorosos de controle de qualidade.",
+      a: "Nosso diferencial está na \"Engenharia de Detalhamento\". Enquanto outras oficinas focam no básico, a 3G Customs foca na entrega de valor e durabilidade, utilizando produtos de linha profissional e processos rigorosos de controle de qualidade em Sorocaba.",
       map: false
     }
   ];
@@ -746,7 +761,7 @@ const Footer: React.FC = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/5 gap-6">
           <p className="text-gray-600 text-[8px] md:text-[9px] tracking-[0.2em] md:tracking-[0.3em] uppercase font-bold">
-            © 2026 3G Customs Sorocaba. Projetos de Alta Estética Automotiva. Criado por <a href="https://www.upperagency.com.br/" target="_blank" className="hover:chrome-text transition-all">UPPER</a>.
+            © 2026 3G Customs Sorocaba. Projetos de Alta Estética Automotiva. Criado por <a href="https://www.upperagency.com.br/" target="_blank" className="text-gray-400 hover:text-white hover:chrome-text transition-all duration-300 border-b border-transparent hover:border-white/20 font-semibold px-1">UPPER</a>.
           </p>
         </div>
       </div>
