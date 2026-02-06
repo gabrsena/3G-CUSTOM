@@ -499,7 +499,7 @@ const AboutUs: React.FC = () => {
                 Customização, PPF e Películas: Excelência em Cada Detalhe
               </h2>
               <p className="text-gray-400 text-sm md:text-base leading-relaxed font-light mb-6 md:mb-8">
-                Localizada estrategicamente no Wanel Ville, em Sorocaba, a 3G Customs nasceu para transformar veículos em verdadeiras obras de arte. Somos um ateliê de customização onde cada projeto é tratado with exclusividade absoluta.
+                Localizada estrategicamente no Wanel Ville, em Sorocaba, a 3G Customs nasceu para transformar veículos em verdadeiras obras de arte. Somos um ateliê de customização onde cada projeto é tratado com exclusividade absoluta.
               </p>
             </div>
             
@@ -704,7 +704,7 @@ const Footer: React.FC = () => {
             <div className="flex flex-col items-center md:items-start space-y-8 bg-white/5 p-8 md:p-10 border border-white/5 group hover:border-white/20 transition-all">
               <div className="flex items-center space-x-4">
                 <Phone size={24} className="text-gray-400 group-hover:chrome-text transition-colors" />
-                <h4 className="text-[10px] md:text-[11px] font-black tracking-[0.3em] uppercase text-gray-400">Contato Estética Automotiva</h4>
+                <h4 className="text-[10px] md:text-[11px] font-black tracking-[0.3em] uppercase text-gray-400">Contato Personalizado</h4>
               </div>
               <div className="space-y-6 text-center md:text-left w-full">
                 <div className="group/item">
