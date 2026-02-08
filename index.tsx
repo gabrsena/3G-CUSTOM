@@ -389,7 +389,9 @@ const Gallery: React.FC = () => {
     { url: "https://i.imgur.com/e6yhP6A.jpeg", title: "Envelopamento Premium", car: "" },
     { url: "https://i.imgur.com/rm67cV8.jpeg", title: "Estética Avançada", car: "" },
     { url: "https://i.imgur.com/ErzEJA1.jpeg", title: "Personalização de Luxo", car: "" },
-    { url: "https://i.imgur.com/2pE3lzX.jpeg", title: "Insulfilm", car: "" }
+    { url: "https://i.imgur.com/2pE3lzX.jpeg", title: "Insulfilm", car: "" },
+    { url: "https://i.imgur.com/87Ci9sm.jpeg", title: "Multimídia", car: "" },
+    { url: "https://i.imgur.com/py2rTaD.jpeg", title: "Tapeçaria", car: "" }
   ];
 
   const scroll = useCallback((direction: 'left' | 'right') => {
