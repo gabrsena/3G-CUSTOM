@@ -14,10 +14,10 @@ export const metadata: Metadata = {
     keywords: "PPF Sorocaba, envelopamento Sorocaba, insulfilm Sorocaba, customização automotiva Sorocaba, 3G Customs",
     icons: {
         icon: [
-            { url: '/favicon.png' },
+            { url: 'https://i.imgur.com/6qLo2Sd.png' },
         ],
         apple: [
-            { url: '/favicon.png' },
+            { url: 'https://i.imgur.com/6qLo2Sd.png' },
         ],
     },
     other: {
