@@ -20,12 +20,16 @@ export const Hero: React.FC = () => {
                     alt="3G Customs Sorocaba Wanel Ville"
                     fill
                     priority
+                    quality={90}
+                    // @ts-ignore
+                    fetchPriority="high"
                     sizes="100vw"
                     className={`absolute inset-0 object-cover object-[20%_center] md:object-center transition-all duration-[2000ms] ${videoLoaded ? 'opacity-0 blur-2xl' : 'opacity-70 grayscale-[20%]'}`}
                 />
                 {asyncVideoSrc && (
                     <video
                         autoPlay muted loop playsInline
+                        preload="metadata"
                         onPlaying={() => setVideoLoaded(true)}
                         poster="https://i.imgur.com/Vaz3k7h.jpg"
                         className={`absolute inset-0 w-full h-full object-cover object-[20%_center] md:object-center transition-opacity duration-[3000ms] cubic-bezier(0.4, 0, 0.2, 1) ${videoLoaded ? 'opacity-70 grayscale-[10%]' : 'opacity-0'}`}
