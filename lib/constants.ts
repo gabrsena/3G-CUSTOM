@@ -20,7 +20,7 @@ export const servicesData: Record<string, {
     benefits: string[];
     faq: { q: string, a: string }[];
 }> = {
-    "ppf": {
+    "ppf-em-sorocaba": {
         name: "PPF",
         title: "PPF (Paint Protection Film)",
         description: "Proteção invisível de poliuretano que protege a pintura contra riscos e pedregulhos com propriedades de regeneração e auto-cura no Wanel Ville em Sorocaba.",
@@ -47,7 +47,7 @@ export const servicesData: Record<string, {
             }
         ]
     },
-    "envelopamento": {
+    "envelopamento-em-sorocaba": {
         name: "Envelopamento Premium",
         title: "Envelopamento Premium",
         description: "Transformação estética completa com vinis importados mundiais. Acabamentos foscos, acetinados ou cores exclusivas.",
@@ -70,7 +70,7 @@ export const servicesData: Record<string, {
             }
         ]
     },
-    "insulfilm": {
+    "insulfilm-em-sorocaba": {
         name: "Insulfilm Premium",
         title: "Películas (Insulfilm)",
         description: "Proteção térmica de última geração cerâmica. Redução de calor e raios UV sem comprometer a visibilidade.",
@@ -93,7 +93,7 @@ export const servicesData: Record<string, {
             }
         ]
     },
-    "customizacao": {
+    "customizacao-em-sorocaba": {
         name: "Customização Automotiva",
         title: "Customização",
         description: "Engenharia de alto padrão para elevar a estética exclusiva do seu veículo com total precisão.",
@@ -111,7 +111,7 @@ export const servicesData: Record<string, {
             }
         ]
     },
-    "martelinho-de-ouro": {
+    "martelinho-de-ouro-em-sorocaba": {
         name: "Martelinho de Ouro",
         title: "Martelinho de Ouro",
         description: "Remoção técnica de amassados preservando a originalidade da pintura de fábrica com maestria.",
@@ -129,7 +129,7 @@ export const servicesData: Record<string, {
             }
         ]
     },
-    "tapecaria": {
+    "tapecaria-em-sorocaba": {
         name: "Tapeçaria Automotiva",
         title: "Tapeçaria",
         description: "Restauração e personalização de interiores com materiais nobres e acabamento artesanal de elite.",
@@ -147,7 +147,7 @@ export const servicesData: Record<string, {
             }
         ]
     },
-    "multimidia": {
+    "multimidia-em-sorocaba": {
         name: "Som e Multimídia",
         title: "Multimídia",
         description: "Integração de sistemas de som e entretenimento de alta fidelidade para uma experiência premium ao dirigir.",
