@@ -72,14 +72,14 @@ export const Services: React.FC = () => {
 
                 <div
                     ref={scrollRef}
-                    className="flex overflow-x-auto gap-6 md:gap-8 pb-10 scrollbar-hide snap-x snap-mandatory scroll-smooth"
+                    className="flex overflow-x-auto gap-4 md:gap-8 pb-10 scrollbar-hide snap-x snap-mandatory scroll-smooth"
                 >
                     {servicesList.map((service, index) => (
-                        <div key={index} className="snap-center relative p-[1px] group transition-all duration-700 overflow-hidden rounded-none min-w-[280px] md:min-w-[320px] flex-shrink-0 md:flex-shrink block">
+                        <div key={index} className="snap-center relative p-[1px] group transition-all duration-700 overflow-hidden rounded-none w-[85vw] min-w-[85vw] md:w-[380px] md:min-w-[380px] flex-shrink-0 block">
                             <a href={service.href} className="absolute inset-0 z-10 w-full h-full"><span className="sr-only">Ver {service.title}</span></a>
                             <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/5 to-white/20 opacity-30 md:opacity-40 group-hover:opacity-100 transition-opacity duration-700"></div>
 
-                            <div className="relative h-full glass-card p-8 md:p-12 bg-[#050505] group-hover:bg-[#0a0a0a] transition-all duration-700 flex flex-col pointer-events-none">
+                            <div className="relative h-full glass-card p-6 md:p-12 bg-[#050505] group-hover:bg-[#0a0a0a] transition-all duration-700 flex flex-col pointer-events-none">
                                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-1000"></div>
 
                                 <div className="text-gray-400 mb-6 md:mb-10 chrome-text inline-block transition-all duration-700 group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.8)]">
@@ -90,11 +90,11 @@ export const Services: React.FC = () => {
                                     {service.title}
                                 </h3>
 
-                                <p className="text-gray-500 text-xs md:text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-500 flex-grow">
+                                <p className="text-gray-500 text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-500 flex-grow">
                                     {service.description}
                                 </p>
 
-                                <div className="mt-8 md:mt-10 opacity-0 md:opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-700 pointer-events-auto z-20">
+                                <div className="mt-8 md:mt-10 opacity-100 md:opacity-0 group-hover:opacity-100 translate-y-0 group-hover:translate-y-0 transition-all duration-700 pointer-events-auto z-20">
                                     <span className="text-[10px] font-black tracking-[0.2em] uppercase border-b border-white/40 hover:border-white pb-1 hover:text-white transition-all cursor-pointer">
                                         Ver Serviço
                                     </span>
