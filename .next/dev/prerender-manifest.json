@@ -1,1 +1,11 @@
-{"version":4,"routes":{"/servicos/ppf":{},"/servicos/envelopamento":{},"/servicos/insulfilm":{},"/servicos/customizacao":{},"/servicos/martelinho-de-ouro":{},"/servicos/tapecaria":{},"/servicos/multimidia":{}},"dynamicRoutes":{"/servicos/[service]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/servicos/[service]","routeRegex":"^\\/servicos\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"1a5896b89ffd3d0fd191cb822c5839a8","previewModeSigningKey":"b53d566975da3d9a4078a32f018443c6500a63c7e92f9487ff550ab59789947b","previewModeEncryptionKey":"ceb4fe133fa17facd37529080c9fbd09bee2275b1c771e275a96d07a891f8c51"}}
+{
+  "version": 4,
+  "routes": {},
+  "dynamicRoutes": {},
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "baf18effa9851f2e5a30ec3e9882b6be",
+    "previewModeSigningKey": "d4d89f589afe3e4f1013e272739686a0e4baeb64d27b5d4182c322d973a546c7",
+    "previewModeEncryptionKey": "e7c1342b04cb71c484afc692bc9598d9fc50b5762e9f2aed496d631eb897c1d2"
+  }
+}
