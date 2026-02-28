@@ -38,7 +38,7 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
 
     return (
         <div className="min-h-screen">
-            <Header scrolled={true} />
+            <Header scrolled={true} showBackButton={true} />
 
             <main className="pt-24 pb-20">
                 {/* Hero do Serviço */}
