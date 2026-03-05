@@ -106,7 +106,7 @@ export const Footer: React.FC = () => {
                                 CEP: <span itemProp="postalCode">18053-505</span>
                             </p>
                             <a
-                                href="https://maps.app.goo.gl/YourMapLinkHere"
+                                href="https://www.google.com/maps/search/?api=1&query=Av.+Paulo+Emanuel+de+Almeida,+590+-+Vila+Barão,+Sorocaba+-+SP,+18053-505"
                                 target="_blank"
                                 className="inline-block text-[9px] font-bold tracking-[0.2em] uppercase border-b border-white/20 pb-1 hover:text-white hover:border-white transition-all"
                             >

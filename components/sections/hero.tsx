@@ -6,11 +6,9 @@ import { HERO_BADGE_IMG } from '@/lib/constants';
 
 export const Hero: React.FC = () => {
     const [videoLoaded, setVideoLoaded] = useState(false);
-    const [asyncVideoSrc, setAsyncVideoSrc] = useState<string | null>(null);
 
-    useEffect(() => {
-        setAsyncVideoSrc("/hero-video.mp4");
-    }, []);
+    // Preload the video source directly in the video tag for better performance
+
 
     return (
         <section id="home" className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
@@ -50,9 +48,9 @@ export const Hero: React.FC = () => {
                         priority
                         className="w-64 md:w-96 h-auto mb-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] animate-reveal"
                     />
-                    <span className="text-[10px] md:text-xs font-extrabold tracking-[0.4em] md:tracking-[0.5em] uppercase chrome-text border-b border-white/20 pb-3 block animate-reveal">
+                    <h2 className="text-[10px] md:text-xs font-extrabold tracking-[0.4em] md:tracking-[0.5em] uppercase chrome-text border-b border-white/20 pb-3 block animate-reveal">
                         Referência em Personalização e Proteção de Luxo em Sorocaba/SP
-                    </span>
+                    </h2>
                 </div>
 
                 <h1 className="text-3xl md:text-7xl font-black mb-6 md:mb-10 leading-[1.1] tracking-tighter">

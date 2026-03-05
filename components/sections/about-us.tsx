@@ -35,22 +35,22 @@ export const AboutUs: React.FC = () => {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10">
                             <div className="space-y-3 md:space-y-4 group">
                                 <Award size={28} className="text-white/80 group-hover:chrome-text transition-all md:w-8 md:h-8" />
-                                <h4 className="text-xs md:text-sm font-bold uppercase tracking-widest">Qualidade Premium</h4>
+                                <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest">Qualidade Premium</h3>
                                 <p className="text-gray-500 text-[10px] md:text-xs leading-relaxed">Materiais importados para garantir durabilidade e acabamento impecável em Sorocaba.</p>
                             </div>
                             <div className="space-y-3 md:space-y-4 group">
                                 <Users size={28} className="text-white/80 group-hover:chrome-text transition-all md:w-8 md:h-8" />
-                                <h4 className="text-xs md:text-sm font-bold uppercase tracking-widest">Time Especialista</h4>
+                                <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest">Time Especialista</h3>
                                 <p className="text-gray-500 text-[10px] md:text-xs leading-relaxed">Técnicos certificados e treinados para o mercado de luxo automobilístico.</p>
                             </div>
                             <div className="space-y-3 md:space-y-4 group">
                                 <Target size={28} className="text-white/80 group-hover:chrome-text transition-all md:w-8 md:h-8" />
-                                <h4 className="text-xs md:text-sm font-bold uppercase tracking-widest">Foco no Detalhe</h4>
+                                <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest">Foco no Detalhe</h3>
                                 <p className="text-gray-500 text-[10px] md:text-xs leading-relaxed">A perfeição está nos detalhes. Do corte do PPF à vitrificação final, nada passa despercebido.</p>
                             </div>
                             <div className="space-y-3 md:space-y-4 group">
                                 <Sparkles size={28} className="text-white/80 group-hover:chrome-text transition-all md:w-8 md:h-8" />
-                                <h4 className="text-xs md:text-sm font-bold uppercase tracking-widest">Exclusividade</h4>
+                                <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest">Exclusividade</h3>
                                 <p className="text-gray-500 text-[10px] md:text-xs leading-relaxed">Soluções personalizadas que refletem a personalidade de cada cliente em Sorocaba.</p>
                             </div>
                         </div>

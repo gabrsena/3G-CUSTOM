@@ -174,13 +174,13 @@ export const servicesList = Object.keys(servicesData).map(slug => ({
 }));
 
 export const galleryProjects = [
-    { url: "/ppf-colorido.webp", title: "Proteção Full PPF Colorido", car: "" },
-    { url: "/envelopamento.webp", title: "Envelopamento Premium", car: "" },
-    { url: "/estetica.webp", title: "Estética Avançada", car: "" },
-    { url: "/personalizacao.webp", title: "Personalização de Luxo", car: "" },
-    { url: "/insulfilm.jpg", title: "Insulfilm", car: "" },
-    { url: "/multimidia.webp", title: "Multimídia", car: "" },
-    { url: "/tapecaria.webp", title: "Tapeçaria", car: "" }
+    { url: "/ppf-colorido.webp", title: "PPF Full Colorido em Sorocaba", car: "Proteção Estética" },
+    { url: "/envelopamento.webp", title: "Envelopamento Premium Sorocaba", car: "Transformação Visual" },
+    { url: "/estetica.webp", title: "Estética Automotiva Wanel Ville", car: "Detailing" },
+    { url: "/personalizacao.webp", title: "Personalização de Luxo 3G Customs", car: "Projetos Exclusivos" },
+    { url: "/insulfilm.jpg", title: "Instalação de Insulfilm Sorocaba", car: "Proteção Térmica" },
+    { url: "/multimidia.webp", title: "Sistemas Multimídia e Som", car: "Tecnologia" },
+    { url: "/tapecaria.webp", title: "Tapeçaria Automotiva de Elite", car: "Acabamento Interno" }
 ];
 
 export const faqData = [

@@ -4,5 +4,7 @@
   "/blog/[slug]/page": "/blog/[slug]",
   "/blog/page": "/blog",
   "/page": "/",
-  "/servicos/[service]/page": "/servicos/[service]"
+  "/robots.txt/route": "/robots.txt",
+  "/servicos/[service]/page": "/servicos/[service]",
+  "/sitemap.xml/route": "/sitemap.xml"
 }
