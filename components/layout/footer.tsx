@@ -160,7 +160,7 @@ export const Footer: React.FC = () => {
 
                 <div className="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/5 gap-6">
                     <p className="text-gray-600 text-[8px] md:text-[9px] tracking-[0.2em] md:tracking-[0.3em] uppercase font-bold">
-                        © 2026 3G Customs Sorocaba. Projetos de Alta Estética Automotiva. Criado por <a href="https://www.upperagency.com.br/" target="_blank" className="font-extrabold px-1 bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent hover:from-green-400 hover:to-green-300 transition-all duration-300 drop-shadow-[0_0_10px_rgba(74,222,128,0.3)]">UPPER</a>.
+                        © 2026 3G Customs Sorocaba. Projetos de Alta Estética Automotiva. Criado e desenvolvido por <a href="https://www.upperagency.com.br/" target="_blank" className="font-extrabold px-1 bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent hover:from-green-400 hover:to-green-300 transition-all duration-300 drop-shadow-[0_0_10px_rgba(74,222,128,0.3)]">UPPER</a>.
                     </p>
                 </div>
             </div>

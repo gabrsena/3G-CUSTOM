@@ -46,6 +46,18 @@ const metadata = {
     title: "PPF e Envelopamento Premium em Sorocaba | 3G Customs",
     description: "Especialistas em PPF, Envelopamento Premium, Insulfilm e Customização Automotiva em Sorocaba. Wanel Ville, Sorocaba/SP.",
     keywords: "PPF Sorocaba, envelopamento Sorocaba, insulfilm Sorocaba, customização automotiva Sorocaba, 3G Customs",
+    icons: {
+        icon: [
+            {
+                url: '/favicon.webp'
+            }
+        ],
+        apple: [
+            {
+                url: '/favicon.webp'
+            }
+        ]
+    },
     other: {
         "geo.region": "BR-SP",
         "geo.placename": "Sorocaba",
@@ -109,18 +121,18 @@ function RootLayout({ children }) {
                     children: JSON.stringify(jsonLd)
                 }, void 0, false, {
                     fileName: "[project]/app/layout.tsx",
-                    lineNumber: 66,
+                    lineNumber: 74,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/layout.tsx",
-            lineNumber: 64,
+            lineNumber: 72,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/layout.tsx",
-        lineNumber: 63,
+        lineNumber: 71,
         columnNumber: 9
     }, this);
 }

@@ -11,7 +11,7 @@ export const AboutUs: React.FC = () => {
                         <div className="absolute -top-10 -left-10 w-40 h-40 border-l border-t border-white/10"></div>
                         <div className="relative z-10 p-[1px] bg-gradient-to-br from-white/20 via-transparent to-white/20 h-[600px]">
                             <Image
-                                src="https://i.imgur.com/6cNW3KV.jpg"
+                                src="/sobre-nos.webp"
                                 alt="Equipe técnica 3G Customs Sorocaba"
                                 fill
                                 sizes="(max-width: 1024px) 100vw, 50vw"

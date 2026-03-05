@@ -76,29 +76,30 @@ export const Gallery: React.FC = () => {
 
     return (
         <section id="galeria" className="py-24 md:py-32 bg-black overflow-hidden border-y border-white/5">
-            <div className="max-w-7xl mx-auto px-6 mb-16 md:mb-24 text-center md:text-left">
-                <p className="text-[10px] md:text-xs font-bold tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-500 mb-4 md:mb-5">Portfólio 3G Customs</p>
-                <h2 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter">Estética Automotiva de Luxo</h2>
-            </div>
-
-            <div className="relative group/gallery">
-                <div className="hidden md:block">
+            <div className="max-w-7xl mx-auto px-6 mb-12 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+                <div className="max-w-2xl text-center md:text-left">
+                    <p className="text-[10px] md:text-xs font-bold tracking-[0.4em] md:tracking-[0.6em] uppercase text-gray-500 mb-4 md:mb-5">Portfólio 3G Customs</p>
+                    <h2 className="text-3xl md:text-6xl font-black chrome-text uppercase tracking-tighter">Estética Automotiva de Luxo</h2>
+                </div>
+                <div className="hidden md:flex gap-4">
                     <button
                         onClick={() => scroll('left')}
-                        className="absolute left-6 lg:left-12 top-1/2 -translate-y-1/2 w-16 h-16 chrome-button flex items-center justify-center rounded-full group/btn z-40 opacity-0 group-hover/gallery:opacity-100 transition-all duration-500 shadow-[0_0_50px_rgba(255,255,255,0.3)]"
+                        className="p-3 chrome-button rounded-sm group active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]"
                         aria-label="Anterior"
                     >
-                        <ChevronLeft size={32} className="text-black group-hover/btn:scale-110 transition-transform" />
+                        <ChevronLeft size={24} className="text-black" />
                     </button>
                     <button
                         onClick={() => scroll('right')}
-                        className="absolute right-6 lg:right-12 top-1/2 -translate-y-1/2 w-16 h-16 chrome-button flex items-center justify-center rounded-full group/btn z-40 opacity-0 group-hover/gallery:opacity-100 transition-all duration-500 shadow-[0_0_50px_rgba(255,255,255,0.3)]"
+                        className="p-3 chrome-button rounded-sm group active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]"
                         aria-label="Próximo"
                     >
-                        <ChevronRight size={32} className="text-black group-hover/btn:scale-110 transition-transform" />
+                        <ChevronRight size={24} className="text-black" />
                     </button>
                 </div>
+            </div>
 
+            <div className="relative group/gallery">
                 <div
                     ref={scrollRef}
                     className="flex overflow-x-auto gap-4 md:gap-8 px-6 md:px-[calc((100vw-1280px)/2)] scrollbar-hide snap-x snap-mandatory pb-12 scroll-smooth"
@@ -113,17 +114,17 @@ export const Gallery: React.FC = () => {
                 <div className="md:hidden flex gap-8">
                     <button
                         onClick={() => scroll('left')}
-                        className="w-16 h-16 chrome-button flex items-center justify-center rounded-full active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.15)]"
+                        className="p-4 chrome-button rounded-sm active:scale-95 shadow-xl"
                         aria-label="Scroll Esquerda"
                     >
-                        <ChevronLeft size={28} className="text-black" />
+                        <ChevronLeft size={20} className="text-black" />
                     </button>
                     <button
                         onClick={() => scroll('right')}
-                        className="w-16 h-16 chrome-button flex items-center justify-center rounded-full active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.15)]"
+                        className="p-4 chrome-button rounded-sm active:scale-95 shadow-xl"
                         aria-label="Scroll Direita"
                     >
-                        <ChevronRight size={28} className="text-black" />
+                        <ChevronRight size={20} className="text-black" />
                     </button>
                 </div>
 

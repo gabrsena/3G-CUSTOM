@@ -1,7 +1,7 @@
-export const LOGO_URL = "https://i.imgur.com/6dX0dHL.png";
+export const LOGO_URL = "/logo.png";
 export const INSTAGRAM_URL = "https://www.instagram.com/3g_customss/";
 export const WHATSAPP_LINK = "https://wa.me/5515974018037?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20or%C3%A7amento.%20Vim%20atrav%C3%A9s%20do%20site%20da%203G%20Customs.";
-export const HERO_BADGE_IMG = "https://i.imgur.com/s2AO3y7.png";
+export const HERO_BADGE_IMG = "/hero-badge.png";
 export const CONTACT_PHONE = "(15) 97401-8037";
 
 export const navItems = [
@@ -174,13 +174,13 @@ export const servicesList = Object.keys(servicesData).map(slug => ({
 }));
 
 export const galleryProjects = [
-    { url: "https://i.imgur.com/Yq3CL4I.jpeg", title: "Proteção Full PPF Colorido", car: "" },
-    { url: "https://i.imgur.com/e6yhP6A.jpeg", title: "Envelopamento Premium", car: "" },
-    { url: "https://i.imgur.com/rm67cV8.jpeg", title: "Estética Avançada", car: "" },
-    { url: "https://i.imgur.com/ErzEJA1.jpeg", title: "Personalização de Luxo", car: "" },
-    { url: "https://i.imgur.com/2pE3lzX.jpeg", title: "Insulfilm", car: "" },
-    { url: "https://i.imgur.com/87Ci9sm.jpeg", title: "Multimídia", car: "" },
-    { url: "https://i.imgur.com/py2rTaD.jpeg", title: "Tapeçaria", car: "" }
+    { url: "/ppf-colorido.webp", title: "Proteção Full PPF Colorido", car: "" },
+    { url: "/envelopamento.webp", title: "Envelopamento Premium", car: "" },
+    { url: "/estetica.webp", title: "Estética Avançada", car: "" },
+    { url: "/personalizacao.webp", title: "Personalização de Luxo", car: "" },
+    { url: "/insulfilm.jpg", title: "Insulfilm", car: "" },
+    { url: "/multimidia.webp", title: "Multimídia", car: "" },
+    { url: "/tapecaria.webp", title: "Tapeçaria", car: "" }
 ];
 
 export const faqData = [
